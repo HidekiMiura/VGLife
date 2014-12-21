@@ -1,0 +1,59 @@
+@import 'colors';
+@import 'dimensions';
+
+div#wrapper {
+  div#container {
+    div#login-form {
+      width: 400px;
+      margin: $wide * 2 auto;
+      padding: $wide * 2;
+      border-radius: $wide;
+      border: solid 4px $dark_cyan;
+      background-color: $very_light_yellow;
+      box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.4);
+      
+      h1 {
+        background-color: transparent;
+        color: $very_dark_cyan;
+        font-size: $huge;
+        font-weight: bold;
+      }
+      
+      form {
+        div {
+          padding: $wide;
+          label {
+            display: block;
+            padding: $moderate 0;
+          }
+          input[type='text'], input[type='password'] {
+            padding: $wide;
+            width: 400px - $wide *4;
+          }
+          input[type='submit'] {
+            padding: $wide $wide *2;
+            background-color: $yellow;
+            border-radius: 20px;
+          }
+        }
+        div.buttons {
+          text-align: center;
+          input[type='submit'] {
+            padding: $wide $very_wide;
+            background-color: $yellow;
+            border-radius: 20px;
+          }
+        }
+        a.cancel {
+          font-size: $large;
+          background-color:$yellow;
+          border: 2px solid $lightGray;
+          border-radius: 20px;
+          padding: $wide $very_wide;
+          padding-top:8px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

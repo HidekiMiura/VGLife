@@ -1,0 +1,2 @@
+class VegetableFormPresenter < FormPresenter
+end

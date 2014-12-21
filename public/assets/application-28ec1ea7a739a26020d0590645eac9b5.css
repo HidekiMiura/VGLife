@@ -1,0 +1,89 @@
+@charset "UTF-8";/* LightYellow */
+/* Orange */
+
+/* マージン、パディング */
+/* フォントサイズ */
+/* 行の高さ */
+
+/* LightYellow */
+/* Orange */
+/* マージン、パディング */
+/* フォントサイズ */
+/* 行の高さ */
+/* line 6, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/container.css.scss */
+div#wrapper div#container h1 {
+  margin: 0;
+  padding: 9px 6px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ffff99;
+  color: #ff9999;
+}
+
+/* LightYellow */
+/* Orange */
+/* マージン、パディング */
+/* フォントサイズ */
+/* 行の高さ */
+/* line 4, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* line 9, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+div#wrapper {
+  position: relative;
+  b-x-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-bottom: 48px;
+  background-color: lightyellow;
+}
+
+/* line 17, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+header {
+  font-size: 20px;
+  padding: 6px;
+  background-color: #448888;
+  color: #eeeeee;
+}
+/* line 22, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+header span.logo-mark {
+  font-weight: bold;
+}
+
+/* line 26, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: #666666;
+  color: #eeeeee;
+}
+/* line 32, D:/Workspace/VegetableGardenLife/app/assets/stylesheets/staff/layout.css.scss */
+footer p {
+  text-align: center;
+  padding: 6px;
+  margin: 0;
+}
+/*
+
+ */
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+

@@ -1,0 +1,13 @@
+<% @title = 'トップページ'%>
+<h1><%= @title %></h1>
+
+<% if current_customer %>
+<div class="menu">
+  <br/>
+  <%= link_to '菜園図', :customer_gardenmaps, :class => "function" %>
+  <br/><br/><img src='/assets/bottom_arrow_green.png' height='30' /><br/><br/>
+  <%= link_to '菜園計画', :customer_gardenplans, :class => "function" %>
+  <br/><br/><img src='/assets/bottom_arrow_green.png' height='30' /><br/><br/>
+  <%= link_to 'レシピ', :customer_recipes, :class => "function" %>
+</div>
+<% end %>

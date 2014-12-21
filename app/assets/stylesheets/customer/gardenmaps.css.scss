@@ -1,0 +1,168 @@
+@import 'colors';
+@import 'dimensions';
+
+div#taskInfoPop {
+    position: absolute;
+    background: #fff;
+    font-size: 10pt;
+    border: 1px solid #1c94c4;
+}
+div#taskInfoPop:after, div#taskInfoPop:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    /*pointer-events: none;*/}
+
+div#taskInfoPop:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-top-color: #fff;
+    border-width: 5px;
+    margin-top: -5px;
+}
+div#taskInfoPop:before {
+    border-color: rgba(28, 148, 196, 0);
+    border-right-color: #1c94c4;
+    border-top-color: #1c94c4;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+div#moveTaskIcon {
+    display: none;
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background-color: #ffffff;
+/*    background-image: url("UI.png");*/
+    color: #000000;
+}
+
+div#clickTaskConnectEndLine {
+    display: none;
+    position: absolute;
+    width:20px;
+    height:3px;
+    background-color:red;
+    margin-top: -1px;
+}
+
+div#clickTaskConnectStartLine {
+    display: none;
+    position: absolute;
+    width:20px;
+    height:3px;
+    background-color:red;
+    margin-top: -1px;
+}
+
+div#clickTaskConnectMiddleVerticalLine {
+    display: none;
+    position: absolute;
+    top:5px;
+    width:3px;
+    left:10px;
+    background-color:red;
+    margin-top: -1px;
+}
+div#clickTaskConnectMiddleCrossedLine {
+    display: none;
+    position: absolute;
+    top:5px;
+    height:3px;
+    left:10px;
+    background-color:red;
+    margin-top: -1px;
+}
+
+
+
+input {
+    padding:2px;
+    margin: 0;
+    border-radius:4px;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    cursor:pointer;
+}
+select {
+    padding:2px;
+    margin: 0;
+    border-radius:4px;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    cursor:pointer;
+}
+div.paramwaku {
+    padding:10px;
+    border:1px solid #1371aa;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+}
+h3 {
+    text-align:center;
+    width:auto;
+/*    width:320px;*/
+    background:#1c94c4;
+    color:#FFF;
+    font-size:15pt;
+    box-shadow: 0 0 2px 2px #c1e4e9;
+    text-shadow: 0 0 1px;
+    padding:10px;
+}
+h4 {
+    width:310px;
+    background:#c1e4e9;
+    color:#007bbb;
+    font-size:11pt;
+    box-shadow: 0 0 2px 2px #c1e4e9;
+    text-shadow: 0 0 1px;
+    padding:10px;
+ }
+h5 {
+    width:1350px;
+    background:#1c94c4;
+    color:#fff;
+    font-size:11pt;
+    box-shadow: 0 0 2px 2px #c1e4e9;
+    text-shadow: 0 0 1px;
+    padding:10px;
+ }
+
+#tabDrags {
+  width:700px;
+  height:28px;
+  // border:2px solid $sea_turtle_green;
+}
+div.canvasScroll {
+	  border:3px solid #AC6700;
+    background-color:$light_brown;
+    width: 675px;
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+    box-shadow: 2px 2px 2px 2px #AC6700;
+}
+div.taskparam {
+    background: #EEE;
+    color: #111;
+    border: 1px solid #FFF;
+}
+div#taskInfoPop {
+    position: absolute;
+    background: #fff;
+    font-size: 10pt;
+    border: 1px solid #1c94c4;
+}

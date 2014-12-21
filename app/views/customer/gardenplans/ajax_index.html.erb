@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+<script>
+  SelectRow = function(newRow) {
+    getPlantEventByAjax(newRow)
+  };
+</script>
+</head>
+
+
+
+<% @title = '栽培計画' %>
+
+<div class="function">
+<div style='float: left' class="title" ><h1><%= @title %></h1></div>
+</br>
+</br>
+</br>
+<div class="table-wrapper">
+  <table class="listing">
+    <tr>
+      <th>野菜</th>
+      <th>アクション</th>
+    </tr>
+    <% @gardenplans.each do |m| %>
+    <tr onclick='SelectRow(<%= m.id %> )'>
+   	  <td><%= m.vegetable_name %></td>
+      <td class="actions">
+        <%= link_to '削除', [ :customer, m ], method: :delete,
+        data: { confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  </br>
+  <table class="listing">
+    <tr>
+      <th width="30px">日</th>
+      <th>イベント名</th>
+    </tr>
+    
+    <% form_for @gardenplanevents_form, remote: true, as: 'index', url: :customer_gardenplans, html: { method: :get, class: 'index' } do |event| %>
+
+      <%= GardenplaneventPresenter.new(event.object, self).table_row %>
+    <% end %>
+  </table>
+  </br>
+  </div>
+  
+  
+<!-- <%= debug(@gardenmaps) %>
+<%= debug(@search_form) %> -->
+</div>   	

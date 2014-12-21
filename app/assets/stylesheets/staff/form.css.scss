@@ -1,0 +1,76 @@
+@import 'colors';
+@import 'dimensions';
+
+div#wrapper {
+  div#container {
+    div#generic-form {
+      width: 480px;
+      margin: $very_wide auto;
+      padding: $very_wide;
+      border-radius: $wide;
+      border: 2px outset $sea_turtle_green;
+      background-color: $light_yellow;
+      
+      form {
+        div {
+          padding: $wide;
+          label {
+            display: block;
+            padding: $moderate 0;
+          }
+          label.required:after {
+            content: '*';
+            padding-left: $narrow;
+            color: $red;
+          }
+          input[type='checkbox']+label { display: inline-block }
+          input[type='radio']+label { display: inline-block }
+        }
+        div.input-block {
+          input { margin-right: $narrow * 2; }
+        }
+        div.notes {
+          text-align: right;
+          font-size: $small;
+          span.mark { color: $red }
+        }
+        div.buttons {
+          text-align: center;
+          input[type='submit'] {
+            padding: $wide $very_wide;
+            background-color: $yellow;
+            border-radius: 20px;
+            box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
+          }
+        }
+        a.cancel {
+          font-size: $large;
+          background-color:$yellow;
+          border: 2px solid $lightGray;
+          border-radius: 20px;
+          padding: $wide $very_wide;
+          padding-top:8px;
+          text-decoration: none;
+        }
+        div.field_with_errors {
+          display: inline;
+          padding: 0;
+          label { color: $red; }
+          input { background-color: $pink; }
+        }
+        div.error-message {
+          color: $red;
+          font-size: $small;
+          padding: 0 $very_wide;
+        }
+        fieldset {
+          border: 2px solid $sea_turtle_green;
+          box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
+          legend {
+            background-color: $yellow;
+          }          
+        }
+      }
+    }
+  }
+}

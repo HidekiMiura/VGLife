@@ -1,0 +1,32 @@
+<!--modernizr.custom.js-->
+<!--jquerypp.custom.js-->
+<!--jquery.bookblock.js-->
+
+<!--default.css-->
+<!--bookblock.css-->
+<!--demo5.css-->
+
+<script type="text/javascript">
+$(function(){
+	$('#slider1').bxSlider({
+		auto:false,
+		speed:1000,
+		slideWidth:500,
+	    // nextSelector: '#slider-next',
+		// prevSelector: '#slider-prev',
+responsive : true,
+mode: 'horizontal',
+		pause:500
+	});
+});
+</script>
+
+<div class="container">
+<ul id="slider1" class="bxslider">
+  <li><%= image_tag 'Sample.png', alt: 'カプレーゼ', width: 400, height: 400 %></li>
+  <li><%= image_tag 'ReturnControl.png', alt: 'カプレーゼ', width: 400, height: 400 %></li>
+  <li><%= image_tag 'SubFlowCall_off.png', alt: 'カプレーゼ', width: 400, height: 400 %></li>
+  <li><%= image_tag 'UI_on.png', alt: 'カプレーゼ', width: 400, height: 400 %></li>
+</ul>
+</div><!-- /container -->
+

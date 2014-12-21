@@ -1,0 +1,42 @@
+@import 'colors';
+@import 'dimensions';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+div#wrapper {
+  position: relative;
+  b-x-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-bottom: ($wide + $moderate) * 2 + $standard_line_height;
+  background-color: $light_yellow;
+}
+header {
+  font-size: $huge;
+  padding: $moderate;
+  background-color: $teal;
+  color: $lightGray;
+  span.logo-mark {
+    font-weight: bold;
+  }
+  a {
+    margin: $narrow $narrow;
+    float: right;
+    color: $lightGray;
+  }
+}
+footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: $dimGray;
+  color: $lightGray;
+  p {
+    text-align: center;
+    padding: $moderate;
+    margin: 0;
+  }
+}

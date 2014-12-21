@@ -1,0 +1,25 @@
+<%= FormPresenter.new(f, self).notes %>
+<%= f.fields_for f.object do |ff| %>
+  <%= markup do |m| 
+    p = GardenplaneventFormPresenter.new(ff, self)
+    p.with_options(required: true) do |q|
+	  m << p.radio_button(:task_code, 'seed')
+	  m << p.label(:task_code_male, '種')
+	  m << p.radio_button(:task_code, 'plant_set')
+	  m << p.label(:task_code_female, '苗植')
+	  options = {:size => 20}
+	  m << '&nbsp;&nbsp;&nbsp;&nbsp;'
+	  m << p.decorated_label(:task_event_date, '播種／定植日')
+	  if options[:class].kind_of?(String)
+	    classes = options[:class].strip.split + [ 'task_event_date-picker' ]
+	    options[:class] = classes.uniq.join(' ')
+	  else
+	    options[:class] = 'task_event_date-picker'
+	  end
+	  m << q.text_field(:task_event_date, options)
+	  m << q.hidden_field(:gardenplan_id, options)
+	  m << q.hidden_field(:vegetable_code, options)
+
+    end
+  end %>
+<% end %>

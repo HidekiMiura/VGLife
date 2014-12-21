@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+<script>
+(function($) {
+	$(window).load(function() {
+       var jsonFlowText = $('#form_gardenmap_plant_set_definition_json').val();
+       var jsonObj = JSON.parse(jsonFlowText);
+       var cultivateVegetableListText = $('#form_gardenmap_cultivate_vegetable_list').val();
+       
+	   var cultivateVegetableList = new Array();
+	   var qStr = cultivateVegetableListText.substr(1,cultivateVegetableListText.length - 2).split(",");
+	   for (var i=0; i<qStr.length; i++) {
+	     var qData = qStr[i].split("=");
+	     cultivateVegetableList[ qData[0] ] = qData[1];
+	   }
+    
+       GardenmapEdit.canvasComponent(jsonObj,cultivateVegetableList);
+ 
+       var $cvdiv = $('#' + GardenmapEdit.con.id.cvdiv);
+       $cvdiv.mousedown(GardenmapEdit.cvmsDown);
+       $cvdiv.mouseup(GardenmapEdit.cvmsUp);
+       $cvdiv.mousemove(GardenmapEdit.cvmsMove);
+       $cvdiv.click(GardenmapEdit.cvmsClick);
+     });
+})(jQuery);
+</script>
+</head>
+
+<div class="function">
+<% @title = '菜園図編集' %>
+<h1><%= @title %></h1>
+<div id="generic-form">
+  <%= form_for @gardenmap_form, as: 'form', url: :customer_gardenmap do |f| %>
+
+    <%= render 'form', f: f %>
+    <%= render 'vegetable_select' %>
+    <br/>
+	<div id="cvdiv" class="canvasScroll"><canvas id="cv1"></canvas></div>
+	<div id="moveTaskIcon" draggable="true"></div>
+	<div class="buttons">
+      <%= f.submit '編集'%><br />
+    </div>
+<% end %>
+</div>
+
+<!-- <%= debug(@gardenmap_form.gardenmap.plant_set_definition_json) %> -->
+</div>
+</html>

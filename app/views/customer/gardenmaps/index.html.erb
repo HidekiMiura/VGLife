@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+<script>
+(function($) {
+	$(window).load(function() {
+       var canvasIdList = $('#canvas_id_list').val();
+       
+       var cultivateVegetableList = new Array();
+	   var canvasIdListSplit = canvasIdList.split("-");
+	   for (var i=0; i<canvasIdListSplit.length; i++) {
+         var jsonFlowText = $('#json_' + canvasIdListSplit[i]).val();
+         var jsonObj = JSON.parse(jsonFlowText);
+         GardenmapList.canvasComponent(jsonObj,"canvas_" + canvasIdListSplit[i]);
+	   }
+     });
+})(jQuery);
+</script>
+</head>
+
+<% @title = '栽培図' %>
+
+<div class="function">
+<div style='float: left' class="title" >
+	<h1><%= @title %></h1>
+</div>
+</br>
+</br>
+</br>
+<div class="table-wrapper">
+  </br>
+  <%= render 'search_form' %>
+  <input id=<%="canvas_id_list" %> type='hidden' value=<%= @canvas_id_list %>>
+  <table class="listing">
+    <tr>
+      <th>年度</th>
+      <th>時期</th>
+  	  <th width=150px height=80px>菜園図タイトル</th>
+  	  <th>菜園図</th>
+      <th>アクション</th>
+    </tr>
+    <% @gardenmaps.each do |c| %>
+    <tr>
+      <input id=<%="json_" + c.id.to_s %> type='hidden' value=<%= c.plant_set_definition_json %>>
+   	  <td><%= c.garden_year %></td>
+   	  <td><%= c.seed_plant_set_term %></td>
+      <td><%= c.gardenmap_title %></td>
+      <td><canvas id=<%="canvas_" << c.id.to_s %>></canvas></td>
+      <td class="actions">
+        <%= link_to '編集', [ :edit, :customer, c ], data: { "no-turbolink" => true } %> |
+        <%= link_to '削除', [ :customer, c ], method: :delete,
+        data: { confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= paginate @gardenmaps %>
+　　<div class="links">
+	<%= link_to '新しい菜園図を作成する登録', :new_customer_gardenmap, data: { "no-turbolink" => true } %>
+  </div>
+  </div>
+<!-- <%= debug(@gardenmaps) %>
+<%= debug(@search_form) %> -->
+</div>   	
+
+</html>

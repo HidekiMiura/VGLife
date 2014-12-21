@@ -1,0 +1,19 @@
+<% @title = 'パスワード変更' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for @change_password_form, url: :customer_password,	method: :patch do |f| %>
+	<%= markup do |m|
+	  p = FormPresenter.new(f, self)
+	  p.with_options(requred: true, size: 32) do |q|
+	    m << q.password_field_block(:current_password, "現在のパスワード")
+	    m << q.password_field_block(:new_password, "新しいパスワード")
+	  	m << q.password_field_block(:new_password_confirmation, "新しいパスワード（確認）")
+	  end
+    end %>
+	<div class="buttons">
+		<%= link_to 'キャンセル', :customer_account, :class => "cancel" %>&nbsp;&nbsp;
+		<%= f.submit '変更' %>
+	</div>
+  <% end %>
+</div>

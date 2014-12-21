@@ -1,0 +1,62 @@
+@import 'colors';
+@import 'dimensions';
+
+.ui-datepicker select.ui-datepicker-year {
+  width: 80px;
+}
+
+.ui-datepicker select.ui-datepicker-month {
+  width: 80px;
+}
+
+.ui-widget-content {
+  border: 1px solid black;
+  background: $very_light_yellow;
+  color: $sea_turtle_green;
+}
+
+.ui-widget-content a {
+  color: black;
+}
+.ui-widget-header {
+  border: 1px solid white;
+  background: $sea_turtle_green;
+  color: white;
+  font-weight: bold;
+}
+.ui-widget-header a {
+  color: white;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid $very_light_yellow;
+  background: $yellow;
+  font-weight: normal;
+  color: black;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: black;
+  text-decoration: none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid #211b0d;
+  background: white;
+  font-weight: normal;
+  color: black;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+  background: white;
+}

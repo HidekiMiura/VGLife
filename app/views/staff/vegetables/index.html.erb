@@ -1,0 +1,33 @@
+<% @title = '野菜データ管理' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+	<%= link_to '新規登録', :new_staff_vegetable %>
+  </div>
+    
+  <table class="listing">
+    <tr>
+      <th>野菜名称</th>
+      <th>分類</th>
+      <th>アクション</th>
+    </tr>
+    <% @vegetables.each do |c| %>
+    <% p = VegetablePresenter.new(c, self) %>
+    <tr>
+      <td class="actions"><%= p.vegetable_name %></td>
+      <td class="actions"><%= p.kind %></td>
+      <td class="actions">
+        <%= link_to '詳細', [ :staff, c ] %> |
+        <%= link_to '編集', [ :edit, :staff, c ] %> |
+        <%= link_to '削除', [ :staff, c ], method: :delete,
+        data: { confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= paginate @vegetables %>
+　　<div class="links">
+    <%= link_to '新規登録', :new_staff_vegetable %>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前のページ"
+      next: "次のページ &rsaquo;"
+      truncate: "..."
+  activemodel:
+    attributes:
+      change_password_form:
+        current_password: 現在のパスワード
+        new_password: 新しいパスワード
+        new_password_confirmation: 新しいパスワード（確認）
+    errors:
+      models:
+        change_password_form:
+          attributes:
+            current_password:
+              wrong: を正しく入力してください。
+            new_password_confirmation:
+              confirmation: と%{attribute}が一致しません。
+  activerecord:
+    attributes:
+      staff_member:
+        email: メールアドレス
+        family_name: 氏名（姓）
+        given_name: 氏名（名）
+        family_name_kana: フリガナ（姓）
+        given_name_kana: フリガナ（名）
+        nickname: ニックネーム
+        birthday: 誕生日
+        start_date: 開始日
+        end_date: 終了日
+      customer:
+        email: メールアドレス
+        family_name: 氏名（姓）
+        given_name: 氏名（名）
+        family_name_kana: フリガナ（姓）
+        given_name_kana: フリガナ（名）
+        nickname: ニックネーム
+        birthday: 誕生日
+        start_date: 開始日
+        end_date: 終了日
+      address:
+        temperate_zone_division: 地域区分（気温）
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        address1: 町域、部屋番号等
+        address2: 建物名、部屋番号等
+      work_address:
+        company_name: 会社名
+        division_name: 部署名
+    errors:
+      messages:
+        invalid: が無効です。
+        blank: が入力されていません。
+      models:
+        staff_member:
+          attributes:
+            email:
+              taken: が他の職員と重複しています。
+            birthday:
+              after_or_equal_to: には1900年１月１日以降の日付を指定してください。
+              before: が未来の日付です。
+              after: には1900年１月１日以降の日付を指定してください。
+            start_date:
+              after_or_equal_to: には2014年１月１日以降の日付を指定してください。
+              before: には1年後の日付より前の日付を指定してください。
+            end_date:
+              after_or_equal_to: には2014年１月１日以降の日付を指定してください。
+              before: には1年後の日付より前の日付を指定してください。
+              after: には開始日より後の日付を指定してください。
+        customer:
+          attributes:
+            email:
+              taken: が他の職員と重複しています。
+            birthday:
+              after_or_equal_to: には1900年１月１日以降の日付を指定してください。
+              before: が未来の日付です。
+              after: には1900年１月１日以降の日付を指定してください。
+            start_date:
+              after_or_equal_to: には2014年１月１日以降の日付を指定してください。
+              before: には1年後の日付より前の日付を指定してください。
+            end_date:
+              after_or_equal_to: には2014年１月１日以降の日付を指定してください。
+              before: には1年後の日付より前の日付を指定してください。
+              after: には開始日より後の日付を指定してください。
+

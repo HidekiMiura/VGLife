@@ -1,0 +1,16 @@
+<% @title = 'ログイン' %>
+<div id="login-form">
+	<h1><%= @title %></h1>
+	<%= form_for @form, url: :customer_session do |f| %>
+      <%= markup do |m| 
+        p = CustomerFormPresenter.new(f, self)
+        m.br
+        m << p.text_field_block(:email, 'メールアドレス', size: 32)
+        m << p.login_password_field_block(:password, 'パスワード', size: 32)
+      end %>
+	  <div class="loginbuttons">
+        <%= f.submit 'ログイン' %><br />
+      </div>
+    <% end %>
+</div>
+	

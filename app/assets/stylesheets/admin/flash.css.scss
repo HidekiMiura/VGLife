@@ -1,0 +1,31 @@
+@import 'colors';
+@import 'dimensions';
+
+header {
+  // span.notice, span.alert {
+  span.notice{
+    display: inline-block;
+    padding: $narrow $moderate;
+    margin: 0 $wide;
+    font-size: $normal;
+    color: $dark_yellow;
+  }
+  span.notice {
+    backgraund-color: $green;
+    font-color: $yellow;
+  }
+  span.alert {
+    font-color: $red;
+  }
+}
+div#wrapper {
+  div#container {
+    div#login-form {
+      span.alert {
+        color: $red;
+        background-color: $yellow;
+      }
+    }
+  }
+}
+

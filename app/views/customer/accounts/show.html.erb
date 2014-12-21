@@ -1,0 +1,38 @@
+<% @title = '登録情報' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+	<%= link_to 'アカウント情報編集', :edit_customer_account %>
+	<%= link_to 'パスワード変更', :edit_customer_password %>
+  </div>
+    
+  <table class="attributes">
+    <tr>
+      <th>氏名</th>
+   	  <td>
+        <%= @customer.family_name %>
+        <%= @customer.given_name %>
+      </td>
+    </tr>  
+    <tr>
+      <th>フリガナ</th>
+   	  <td>
+        <%= @customer.family_name_kana %>
+        <%= @customer.given_name_kana %>
+      </td>
+    </tr>  
+    <tr>
+      <th>メールアドレス</th>
+   	  <td>
+        <%= @customer.email %>
+      </td>
+    </tr>  
+    <tr>
+      <th>パスワード</th>
+   	  <td class="password">**********</td>
+      </td>
+    </tr>
+  </table>
+</div>   	
+

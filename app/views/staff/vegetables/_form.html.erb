@@ -1,0 +1,24 @@
+<%= FormPresenter.new(f, self).notes %>
+<%= f.fields_for :vegetable, f.object.vegetable do |ff| %>
+  <%= markup do |m| 
+    p = VegetableFormPresenter.new(ff, self)
+    p.with_options(required: true) do |q|
+      m << q.text_field_block(:vegetable_code, '野菜コード', size: 32)
+      m << q.text_field_block(:vegetable_name, '野菜名称', size: 32)
+      m << q.drop_down_list_block(:kind_ka, '科', Vegetable::KIND_KAS)
+      m << q.drop_down_list_block(:vegetable_large_class, '菜類大分類', Vegetable::VEGETABLE_LARGE_CLASS)
+      m << q.drop_down_list_block(:vegetable_small_class, '菜類小分類', Vegetable::VEGETABLE_SMALL_CLASS)
+    end
+    m << p.text_field_block(:plant_way, '植え方', size: 32)
+    m << p.checkbox_field_block(:stake_flg, '支柱', size: 32)
+    m << p.text_field_block(:list_width_cm, '畝幅(cm)', size: 32)
+    m << p.text_field_block(:list_height_cm, '畝高(cm)', size: 32)
+    m << p.text_field_block(:raise_seed_term, '育苗期間(日)', size: 32)
+    m << p.checkbox_field_block(:thutiyose_flg, '土寄', size: 32)
+    m << p.text_field_block(:companion_plant_json, 'コンパニオンプラント(json)', size: 32)
+    m << p.text_field_block(:annual_perennial_herb, '一／多年草', size: 32)
+    m << p.checkbox_field_block(:deep_yellow_vegetable_flg, '緑黄色野菜', size: 32)
+    m << p.text_field_block(:nutrient, '栄養素', size: 32)
+    m << p.text_field_block(:preferred_ph, '好適PH', size: 32)
+  end %>
+<% end %>

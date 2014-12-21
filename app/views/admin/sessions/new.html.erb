@@ -1,0 +1,22 @@
+<% @title = 'ログイン' %>
+<div id="login-form">
+	<h1><%= @title %></h1>
+	<%= form_for @form, url: :admin_session do |f| %>
+	  <div>
+	  	<%= f.label :email, 'メールアドレス' %>
+	  	<%= f.text_field :email %>
+	  </div>
+	  <div>
+	  	<%= f.label :password, 'パスワード' %>
+	  	<%= f.password_field :password %>
+	  </div>
+	  <div class="buttons">
+	  	<%= link_to 'キャンセル',  '/admin', :class =>"cancel" %>&nbsp;&nbsp;
+	  	<%= f.submit 'ログイン' %><br />
+      </div>
+	<% end %>
+	<div>
+	  <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+	</div>
+</div>
+	

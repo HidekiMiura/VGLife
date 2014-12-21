@@ -1,0 +1,25 @@
+@import 'colors';
+@import 'dimensions';
+
+form.search {
+  padding: $wide;
+  border: solid $sea_turtle_green 1px;
+  background-color: $light_yellow;
+  div {
+    display: inline-block;
+    margin-right: $moderate $very_wide $moderate 0;
+    margin-left: $moderate $very_wide $moderate 0;
+    margin-top: 3px;
+    vertical-align: middle;  
+    .label, .input {
+      vertical-align: middle;  
+    }
+    input[type='submit'] {
+      margin-top: 3px;
+      padding: $narrow $very_wide;
+      background-color: $yellow;
+      border-radius: 20px;
+      float:right;
+    }
+  }
+}

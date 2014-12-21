@@ -1,0 +1,13 @@
+<div style="float: left;" >
+<% @title = '菜園計画の新規登録' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for @gardenplanevent_form, as: 'form', url: :customer_gardenplans do |f| %>
+    <%= render 'event_form', f: f %>
+    <div class="buttons">
+      <%= f.submit '登録'%><br />
+    </div>
+  <% end %>
+</div>
+</div>

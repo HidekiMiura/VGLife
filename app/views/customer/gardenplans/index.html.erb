@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+<script>
+  SelectRow = function(id,vegetable_code) {
+    getPlantEventByAjax(id,vegetable_code)
+  };
+</script>
+</head>
+
+<% @title = '栽培計画' %>
+
+<div class="function">
+<div style='float: left' class="title" >
+	<h1><%= @title %></h1>
+</div>
+</br>
+</br>
+</br>
+<div class="table-wrapper">
+  <table class="listing">
+    <tr>
+      <th>季節</th>
+      <th>野菜</th>
+      <th>アクション</th>
+    </tr>
+    <% @gardenplans.each do |m| %>
+    <tr>
+    <!-- <tr onclick='SelectRow(<%= m.id %>, <%= '"' + m.vegetable_code + '"' %>)'> -->
+      <td><%= m.seed_plant_set_term %></td>
+      <td><%= link_to m.vegetable_name, controller: "gardenplans", action: "index", gardenplan_id: m.id, vegetable_code: m.vegetable_code , vegetable_name: m.vegetable_name %></td>
+      <td class="actions">
+      	<%= link_to '菜園計画を立てる', [ :new, :customer, m, :gardenplan_id => m.id, :vegetable_code => m.vegetable_code]  %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  </br>
+  <fieldset>
+    <legend><%= @selectvegetable %></legend>
+    <table class="eventlisting">
+      <% @vegetabletasks.each do |event| %>
+        <%= VegetabletaskPresenter.new(event, self).table_row %>
+      <% end %>
+    </table>
+  </fieldset>
+
+  </br>
+  </div>
+  
+  
+<!-- <%= debug(@gardenmaps) %>
+<%= debug(@search_form) %> -->
+</div>   	

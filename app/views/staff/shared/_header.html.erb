@@ -1,0 +1,13 @@
+<header>
+	<span class="logo-mark">野菜菜園生活</span>
+	<%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+	<%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+	<%=
+	  if current_staff_member
+	  	link_to 'ログアウト', :staff_session, method: :delete
+	  else
+	  	link_to 'ログイン', :staff_login
+	  end
+	%>
+	<%= link_to 'アカウント', :staff_account if current_staff_member %>
+</header>

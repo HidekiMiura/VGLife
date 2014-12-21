@@ -1,0 +1,30 @@
+<% @title = '野菜詳細情報' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <table class="attributes">
+  	<% p = VegetablePresenter.new(@vegetable, self) %>
+  	<tr><th colspan="2"></th></tr>
+    <tr><th>野菜コード</th><td><%= p.vegetable_code %></td></tr>
+    <tr><th>野菜名称</th><td><%= p.vegetable_name %></td></tr>
+  	<tr><th colspan="2">分類情報</th></tr>
+    <tr><th>科</th><td><%= p.kind_ka %></td></tr>
+    <tr><th>属</th><td><%= p.kind_zoku %></td></tr>
+    <tr><th>種</th><td><%= p.kind_syu %></td></tr>
+    <tr><th>菜類大分類</th><td><%= p.vegetable_large_class %></td></tr>
+    <tr><th>菜類小分類</th><td><%= p.vegetable_small_class %></td></tr>
+  	<tr><th colspan="2">栽培情報</th></tr>
+    <tr><th>植え方</th><td><%= p.plant_way %></td></tr>
+    <tr><th>支柱フラグ</th><td><%= p.flg_mark(p.stake_flg) %></td></tr>
+    <tr><th>土寄フラグ</th><td><%= p.flg_mark(p.thutiyose_flg) %></td></tr>
+    <tr><th>畝幅(cm)</th><td><%= p.list_width_cm %></td></tr>
+    <tr><th>畝高(cm)</th><td><%= p.list_height_cm %></td></tr>
+    <tr><th>育苗期間</th><td><%= p.raise_seed_term %></td></tr>
+    <tr><th>コンパニオンプラント(json)</th><td><%= p.companion_plant_json %></td></tr>
+    <tr><th>一／多年草</th><td><%= p.annual_perennial_herb %></td></tr>
+    <tr><th>好適PH</th><td><%= p.preferred_ph %></td></tr>
+  	<tr><th colspan="2">栄養情報</th></tr>
+    <tr><th>緑黄色野菜フラグ</th><td><%= p.flg_mark(p.deep_yellow_vegetable_flg) %></td></tr>
+    <tr><th>栄養素</th><td><%= p.nutrient %></td></tr>
+  </table>
+</div>

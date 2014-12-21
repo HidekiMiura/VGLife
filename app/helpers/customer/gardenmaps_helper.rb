@@ -1,0 +1,2 @@
+module Customer::GardenmapsHelper
+end

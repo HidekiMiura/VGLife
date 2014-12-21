@@ -1,0 +1,7 @@
+<%= FormPresenter.new(f, self).notes %>
+<%= f.fields_for f.object.gardenmap do |ff| %>
+  <%= markup do |m| 
+    p = GardenmapFormPresenter.new(ff, self)
+    m << p.garden_text_fields_block(:garden_year, :seed_plant_set_term, :gardenmap_title)
+  end %>
+<% end %>

@@ -1,0 +1,11 @@
+<header>
+	<span class="logo-mark">野菜菜園生活</span>
+	<%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
+	<%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
+	<%=
+	  if current_customer
+	  	link_to 'ログアウト', :customer_session, method: :delete
+	  end
+	%>
+	<%= link_to '登録情報', :customer_account if current_customer %>
+</header>

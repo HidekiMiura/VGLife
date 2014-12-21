@@ -1,0 +1,21 @@
+<%= form_for @search_form, as: 'search', url: :staff_customers, html: { method: :get, class: 'search' } do |f| %>
+  <%= markup do |m|
+    p = FormPresenter.new(f, self)
+
+    m.div do
+    m << p.text_field_search_block(:family_name_kana, 'フリガナ（姓）：', "50px", "0px")
+    m << p.text_field_search_block(:given_name_kana, 'フリガナ（名）：', "20px", "20px")
+    m.br
+    m << p.drop_down_list_search_block(:birth_year, '誕生年：', "192px", (1900..Time.current.year).to_a.reverse)
+    m << p.drop_down_list_search_block(:birth_month, '誕生月：', "178px", 1..12)
+    m << p.drop_down_list_search_block(:birth_mday, '誕生日：', "133px", 1..31)
+    m.br
+    m << p.drop_down_list_search_block(:address_type, '住所の検索範囲：', "79px", [ [ '自宅住所のみ', 'home'], [ '勤務先のみ', 'work' ] ])
+    m << p.drop_down_list_search_block(:prefecture, '都道府県：', "124px", Address::PREFECTURE_NAMES)
+    m << p.text_field_search_block(:city, '市区町村：', "0px")
+    m.br
+    m << p.phone_field_search_block(:phone_number, '電話番号：', "72px")
+    m << f.submit('検索', style:"float:right")
+    end
+  end %>
+<% end %>

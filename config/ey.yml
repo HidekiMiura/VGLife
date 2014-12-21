@@ -1,0 +1,26 @@
+# 'defaults' applies to all environments running this application.
+# Environment specific options apply only to a single environment and override settings in defaults.
+---
+defaults:
+  bundle_without: test development mygroup
+  bundle_options: --local
+  copy_exclude:
+  - .git
+  maintenance_on_restart: false
+  maintenance_on_migrate: false
+  precompile_assets: true
+  precomplie_assets_task: assets:precompile
+  precompile_unchanged_assets: true
+  asset_dependencies: app/assets
+  assets_strategy: shifting
+  asset_roles:
+  - :app
+  - :app_master
+  - :util
+  ignore_database_adapter_warning: true
+  migrate: false
+environments:
+  development:
+    precompile_unchanged_assets: true
+    assets_strategy: shifting
+    asset_roles: :all

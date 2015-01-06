@@ -5,7 +5,7 @@ class VegetabletaskPresenter < ModelPresenter
   def table_row
     markup(:tr) do |m|
       m.td(:style =>"border-bottom: 4px outset #fffff0;background-color: #FFFF99;color: #438D80;font-weight: bold;") do
-        m << cultivate_task_name
+        m.input(:value =>cultivate_task_name, :type =>"button", :style =>"background: none;text-decoration: underline;", :onClick =>"showDialog(\"" + cultivate_task_name + "\",\"" + cultivate_task_comment + "\")")
       end
       m.td do
         m.input(:type =>"image", :src =>"/assets/" + cultivate_task_image)

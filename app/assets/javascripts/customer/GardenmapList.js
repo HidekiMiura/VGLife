@@ -91,12 +91,27 @@ var DRAG;
 
         DRAG = new GardenmapCanvasCom.canv(canvasId, ctx, 20,canvas.width, canvas.height, GardenmapList, jsonFlowObj);
 
+        // imageファイルの取り込み時間の調整
+function sleep(time, callback){
+		setTimeout(callback, time);
+	}
+	
+	sleep(500, function (){ 
         canvas = document.getElementById(canvasId);
 
         // DRAG.changeGrSep(parseInt(DRAG.jsonFlowObj.workFlowDesignGride));
         DRAG.blank(canvas.width, canvas.height);
         DRAG.readWorkFlow();
         DRAG.view();
+
+		} );
+	
+        // canvas = document.getElementById(canvasId);
+// 
+        // // DRAG.changeGrSep(parseInt(DRAG.jsonFlowObj.workFlowDesignGride));
+        // DRAG.blank(canvas.width, canvas.height);
+        // DRAG.readWorkFlow();
+        // DRAG.view();
 
     };
 

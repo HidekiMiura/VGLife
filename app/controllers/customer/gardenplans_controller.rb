@@ -11,7 +11,12 @@ class Customer::GardenplansController < Customer::Base
       first_vegetable_code = params[:vegetable_code]
       first_vegetable_name = params[:vegetable_name]
     end
-    @vegetabletasks = Vegetabletask.all.where(:vegetable_code => first_vegetable_code)
+    if I18n.locale.to_s == "ja"
+      searchLocale = "ja" 
+    else
+      searchLocale = "en"
+    end
+    @vegetabletasks = Vegetabletask.all.where(:vegetable_code => first_vegetable_code).where(language_code: searchLocale).order(cultivate_task_term: :asc)
     @gardenplanevents = Gardenplanevent.all.where(gardenplan_id: first_gardenplan_id).order(cultivate_task_term: :asc)
     @selectvegetable = first_vegetable_name     
     render action: 'index' 

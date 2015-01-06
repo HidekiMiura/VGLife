@@ -9,7 +9,7 @@ class GardenmapFormPresenter < FormPresenter
       m << form_builder.select(gardenYearName, (Time.zone.now.year)..(Time.zone.now.year + 10), { include_blank: false }, required: true)
       m << error_messages_for(gardenYearName)
       m << decorated_label(gardenmapTitle, "菜園図タイトル", size: 32)
-      m << text_field(gardenmapTitle)
+    m << text_field(gardenmapTitle, {size: 42,  placeholder: "菜園図のタイトルを入力して下さい。"})
       m << error_messages_for(gardenmapTitle)
       m << hidden_field(:plant_set_definition_json, options)
       m << hidden_field(:cultivate_vegetable_list, options)

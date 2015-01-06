@@ -25,10 +25,11 @@
 <div id="generic-form">
   <%= form_for @gardenmap_form, as: 'form', url: :customer_gardenmaps do |f| %>
     <%= render 'form', f: f %>
-    <%= render 'companionplant_select' %>
-    <%= render 'vegetable_select' %>
+    <%= render 'new_vegetable_select' %>
     <br/>
     <div id="cvdiv" class="canvasScroll"><canvas id="cv1"></canvas></div>
+    <div id="taskParamView" class='taskparam' style="width:800px;height:350px;"><h3>野菜情報</h3><br></div>
+
     <div id="moveTaskIcon" draggable="true"></div>
     <div class="buttons">
       <%= f.submit '作成'%><br />

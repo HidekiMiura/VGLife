@@ -42,6 +42,48 @@ div#wrapper {
         width: 762px;
       }
     } 
+    div.explan {
+      float: left;
+      width: 500px;
+      height: 710px;
+      border: 2px solid $sea_turtle_green;
+      text-align:center;
+      margin: $moderate $moderate;
+      box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
+      a.function {
+        font-size: $large;
+        color: $very_light_yellow;
+        background-color:$green_peas;
+        border: 2px solid $lightGray;
+        border-radius: 20px;
+        padding: $wide $very_wide;
+        padding-top:8px;
+        text-decoration: none;
+      box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+
+      }
+    }
+    div.ads {
+      float: left;
+      width: 250px;
+      height: 310px;
+      border: 2px solid $sea_turtle_green;
+      text-align:center;
+      margin: $moderate $moderate;
+      box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
+      a.function {
+        font-size: $large;
+        color: $very_light_yellow;
+        background-color:$green_peas;
+        border: 2px solid $lightGray;
+        border-radius: 20px;
+        padding: $wide $very_wide;
+        padding-top:8px;
+        text-decoration: none;
+      box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+
+      }
+    }
     div.menu {
       float: left;
       width: 200px;

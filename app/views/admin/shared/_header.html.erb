@@ -1,5 +1,11 @@
 <header>
-	<%= link_to '野菜菜園生活', :admin_root, class: "logo-mark" %>
+	<%=
+      if I18n.locale.to_s == "en"
+	  	link_to 'vegetable garden life', :admin_root, class: "logo-mark" 
+	  else
+		link_to '野菜菜園生活', :admin_root, class: "logo-mark"
+	  end
+	%>
 	<%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
 	<%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
 	<%=

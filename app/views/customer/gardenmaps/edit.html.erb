@@ -27,8 +27,7 @@
 </head>
 
 <div class="function">
-<% @title = '菜園図編集' %>
-<h1><%= @title %></h1>
+<h1><%= t('gardenmaps.edit.title') %></h1>
 <div id="generic-form">
   <%= form_for @gardenmap_form, as: 'form', url: :customer_gardenmap do |f| %>
 
@@ -36,6 +35,7 @@
     <%= render 'vegetable_select' %>
     <br/>
 	<div id="cvdiv" class="canvasScroll"><canvas id="cv1"></canvas></div>
+    <div id="taskParamView"></div>
 	<div id="moveTaskIcon" draggable="true"></div>
 	<div class="buttons">
       <%= f.submit '編集'%><br />

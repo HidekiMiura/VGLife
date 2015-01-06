@@ -3,8 +3,8 @@
     p = FormPresenter.new(f, self)
 
     m.div do
-    m << p.drop_down_list_search_block(:garden_year, '菜園年度：', "0px", (2014..Time.current.year + 1).to_a.reverse)
-    m << f.submit('検索', style:"float:right")
+    m << p.drop_down_list_search_block(:garden_year, t('gardenmaps.index.year'), "0px", (2014..Time.current.year + 1).to_a.reverse)
+    m << f.submit(t('gardenmaps.index.searchButtonLabel'), style:"float:right")
     end
   end %>
 <% end %>

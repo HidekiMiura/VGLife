@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<script>
+  showExplanVegetable = function() {
+	
+
+  	$("#explanvegetable").dialog({
+      modal: true,
+      resizable: true,
+      maxHeight: 500,
+      maxWidth : 500,
+      minHeight: 150,
+      minWidth : 150,
+      height: 850,
+      width : 900
+    });
+  };
+</script>
+</head>
+<div class="explan">
+<h1><%= t('top.index.vegetableCite') %></h1>
+<img src="assets/FlowStart.png">
+<input type="button" value=<%= t('top.index.descriptionFunctions') %> onclick='showExplanVegetable()'>
+<div id="explanvegetable" style="display:none;"  title="菜園サイト">
+<object width="820" height="700" data="assets/Explan_VegetableFunctions.pdf"></object>
+</div>
+<h1><%= t('top.index.allowanceManagement') %></h1>
+<img src="assets/FlowStart.png">
+<input type="button" value=<%= t('top.index.descriptionFunctions') %> onclick='showExplanVegetable()'>
+<h1><%= t('top.index.businessManagement') %></h1>
+<img src="assets/FlowStart.png">
+<input type="button" value=<%= t('top.index.descriptionFunctions') %> onclick='showExplanVegetable()'>
+</div>
+
+<div class="ads">
+<h1><%= t('top.index.buildingCite') %></h1>
+<img src="assets/BranchJoin.png">
+<input type="button" value=<%= t('top.index.estimationRequest') %> onclick='showExplanVegetable()'>
+<div id="explanvegetable" style="display:none;"  title="菜園サイト">
+<object width="820" height="700" data="assets/Explan_VegetableFunctions.pdf"></object>
+</div>
+<h1><%= t('top.index.memberDevelopmentTeamRails4') %></h1>
+<img src="assets/BranchJoin.png">
+<input type="button" value=<%= t('top.index.offer') %> onclick='showExplanVegetable()'>
+</div>

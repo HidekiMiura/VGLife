@@ -191,11 +191,13 @@ ActiveRecord::Schema.define(version: 20141214122803) do
     t.string   "cultivate_task_term"
     t.string   "cultivate_task_comment"
     t.string   "cultivate_task_image"
+    t.string   "language_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "vegetabletasks", ["cultivate_task_code"], name: "index_vegetabletasks_on_cultivate_task_code", using: :btree
+  add_index "vegetabletasks", ["language_code"], name: "index_vegetabletasks_on_language_code", using: :btree
 
   add_foreign_key "customer_events", "customers", name: "customer_events_customer_id_fk"
 

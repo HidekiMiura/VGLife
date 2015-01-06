@@ -9,9 +9,11 @@ class CreateVegetabletasks < ActiveRecord::Migration
       t.string     :cultivate_task_term     # 栽培タスク時期
       t.string     :cultivate_task_comment  # 栽培タスクコメント
       t.string     :cultivate_task_image    # 栽培タスクイメージ
+      t.string     :language_code           # 言語コード
 
       t.timestamps
     end
       add_index :vegetabletasks, :cultivate_task_code
+    add_index :vegetabletasks, :language_code
   end
 end

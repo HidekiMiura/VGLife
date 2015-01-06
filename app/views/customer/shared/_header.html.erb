@@ -1,11 +1,39 @@
 <header>
-	<span class="logo-mark">野菜菜園生活</span>
+	<%
+      if I18n.locale.to_s == "en"
+	  	@title = 'vegetable garden life'
+	  	@Logout = 'Logout'
+	  	@RegistrationInfo = 'registration information'
+	  else
+		@title = '野菜菜園生活'
+		@Logout = 'ログアウト'
+	  	@RegistrationInfo = '登録情報'
+	  end
+	%>
+
+	<span class="logo-mark"><%= @title %></span>
 	<%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
 	<%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
 	<%=
 	  if current_customer
-	  	link_to 'ログアウト', :customer_session, method: :delete
+        link_to @Logout, :customer_session, method: :delete
 	  end
 	%>
-	<%= link_to '登録情報', :customer_account if current_customer %>
+	<%= link_to @RegistrationInfo, :customer_account if current_customer %>
+	<%=
+	  if I18n.locale.to_s == "en"
+		link_to 'Top',  :controller=>"customer/top", :action => 'index', :locale =>'en'
+ 
+	  else
+		link_to 'トップ',  :controller=>"customer/top", :action => 'index', :locale =>'ja'
+	  end
+	%>
+	<%=
+	  if I18n.locale.to_s == "en"
+	  	link_to 'Japanese',  :controller=>"customer/top", :action => 'index', :locale =>'ja'
+ 
+	  else
+		link_to 'English',  :controller=>"customer/top", :action => 'index', :locale =>'en'
+	  end
+	%>
 </header>

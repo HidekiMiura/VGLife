@@ -14,5 +14,12 @@ div#wrapper {
       color: $sea_turtle_green;
       border-bottom: thin solid $sea_turtle_green;
     }
+    h2 {
+      margin: 0;
+      padding: $moderate * 1.5 $moderate;
+      font-size: $large;
+      font-weight: normal;
+      color: $sea_turtle_green;
+    }
   }
 }

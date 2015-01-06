@@ -1,4 +1,20 @@
 ja:
+  top:
+    index:
+      vegetableCite: 菜園サイト
+      allowanceManagement: お小遣い管理
+      businessManagement: 営業管理
+      buildingCite: サイト構築
+      memberDevelopmentTeamRails4: Rails4開発チーム要員
+      descriptionFunctions: 機能説明
+      estimationRequest: 見積依頼
+      offer: オファー
+  gardenmaps:    #=> controller
+    index:      #=> action
+      searchButtonLabel: 検索
+      year: 菜園年度
+    edit:
+      title: 菜園図編集
   views:
     pagination:
       first: "&laquo; 最初"

@@ -11,7 +11,13 @@
   <div id="wrapper">
   	<%= render 'customer/shared/header' %>
   	<div id="container">
-      <%= render 'customer/shared/functionMenu' %>
+      <%= 
+	  if I18n.locale.to_s == "en"
+	  	render 'customer/shared/functionMenu_en' 
+	  else
+		render 'customer/shared/functionMenu'
+	  end
+      %>
       <%= yield %>
   	</div>
   	<%= render 'shared/footer' %>

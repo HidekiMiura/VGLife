@@ -75,6 +75,19 @@ var GardenmapCanvasCom = {}; // namespace
       this.grBcv = false;
       this.itemAr = [];
       this.jsonFlowObj = jsonFlowObj;
+
+	  //Imageオブジェクトを生成して、画像ファイルを先読みしておく
+      this.imgTomato = new Image();
+      this.imgTomato.src = "/assets/Tomato_off.png";
+      this.imgStrawberry = new Image();
+      this.imgStrawberry.src = "/assets/Strawberry_off.png";
+      this.imgBasil = new Image();
+      this.imgBasil.src = "/assets/Basil_off.png";
+      this.imgMarigold = new Image();
+      this.imgMarigold.src = "/assets/Marigold_off.png";
+      this.imgCabbage = new Image();
+      this.imgCabbage.src = "/assets/Cabbage_off.png";
+
       this.cultivateVegetableList = cultivateVegetableList;
 
       var gcntx = 0;
@@ -345,10 +358,10 @@ var GardenmapCanvasCom = {}; // namespace
         this.ctx.clearRect(0, 0, w, h);
         // グリッド表示
         this.ctx.save();
-        this.ctx.globalAlpha = 0.5;
+        // this.ctx.globalAlpha = 0.5;透過性
         this.ctx.strokeStyle = "#662100";
         this.ctx.lineWidth = this.grWidth;
-        this.ctx.strokeRect(0,0,this.grXAr.length*(this.grSep + 2),this.grYAr.length*(this.grSep + 2))
+        this.ctx.strokeRect(0,0,this.grXAr.length*(this.grSep + 2),this.grYAr.length*(this.grSep + 2));
 	    for (var i = 0; i < this.grXAr.length; i++) {
 	      this.ctx.beginPath();
 	      this.ctx.moveTo(this.grXAr[i], 0);
@@ -369,51 +382,92 @@ var GardenmapCanvasCom = {}; // namespace
         for (var i = 0; i < this.itemAr.length; i++) {
           this.viewImage(i);
         }
-        for (var i = 0; i < this.itemAr.length; i++) {
-          this.viewCircleColor(i);
-        }
+        // for (var i = 0; i < this.itemAr.length; i++) {
+          // this.viewCircleColor(i);
+        // }
      };
 
     this.viewImage = function(index) {
         var x = this.itemAr[index].x;
         var y = this.itemAr[index].y;
         var type = this.itemAr[index].type;
-        ctx.save();
+        // ctx.save();
         var img = new Image();
         var width = this.grSephf *1.5;
         var height = this.grSephf *1.5;
-        img.src = "/assets/" + this.itemAr[index].stateIcon;
+        img.src = this.getImgSrc(this.itemAr[index].type);
         var canvasId = this.canvasId;
         var xxc = this.grSep * x + this.grSepqua/2;
         var yyc = this.grSep * y + this.grSepqua/2;
-        img.onload = function() {
-            var canvas = document.getElementById(canvasId);
-            var ctx = canvas.getContext("2d");
-            ctx.save();
-            ctx.beginPath();
-            ctx.drawImage(img,xxc, yyc,width,height);
-            ctx.closePath();
-            ctx.stroke();
-        };
+        var canvas = document.getElementById(canvasId);
+        var ctx = canvas.getContext("2d");
+        // ctx.save();
+        ctx.beginPath();
+        ctx.drawImage(img,xxc, yyc,width,height);
+        ctx.closePath();
+        ctx.stroke();
+        // img.onload = function() {
+            // var canvas = document.getElementById(canvasId);
+            // var ctx = canvas.getContext("2d");
+            // // ctx.save();
+            // ctx.beginPath();
+            // ctx.drawImage(img,xxc, yyc,width,height);
+            // ctx.closePath();
+            // ctx.stroke();
+        // };
       };
 
-      this.viewCircleColor = function(index) {
-        var x = this.itemAr[index].x;
-        var y = this.itemAr[index].y;
-        ctx.save();
-        if (this.itemAr[index].circleColor !== "") {
-            ctx.globalAlpha = 0.4;
-            ctx.beginPath();
-            ctx.arc(this.grSep * x + this.grSepqua * 2, this.grSep * y + this.grSepqua * 2, this.grSepqua*1.5, 0, 2 * Math.PI, false);
-            ctx.strokeStyle = this.itemAr[index].circleColor;
-            ctx.lineWidth = 4 * this.grSep/80;
-            ctx.closePath();
-            ctx.stroke();
-            ctx.globalAlpha = 1;
-            ctx.strokeStyle = 'black';
-            ctx.lineWidth = 1;
+    this.getImgSrc = function(type) {
+    	
+        if (type === names.con.dtype.Tomato ){
+        	return this.imgTomato.src;
+        } else if (type === names.con.dtype.Strawberry ){
+        	return this.imgStrawberry.src;
+        } else if (type === names.con.dtype.Basil ){
+        	return this.imgBasil.src;
+        } else if (type === names.con.dtype.Marigold ){
+        	return this.imgMarigold.src;
+        } else if (type === names.con.dtype.Strawberry ){
+        	return this.imgStrawberry.src;
+        } else if (type === names.con.dtype.Cabbage ){
+        	return this.imgCabbage.src;
         }
-      };
+
+
+
+         // else if (this.itemAr[index].type === names.con.dtype.UI ||
+             // this.itemAr[index].type === names.con.dtype.Tomato ||
+             // this.itemAr[index].type === names.con.dtype.Basil ||
+             // this.itemAr[index].type === names.con.dtype.TomatoBasil ||
+             // this.itemAr[index].type === names.con.dtype.Marigold ||
+             // this.itemAr[index].type === names.con.dtype.Cabbage){
+             // if ((typeof state === "undefined" || state === "SLEEP" || state === "WAIT" || state === "PAUSE" || state === "CANCEL")){
+                // taskStateIcon = '_off';
+             // } else if ((state === "RUN"|| state === "COMPLETE")){
+                // taskStateIcon = '_on';
+             // }
+        // } else {
+            // taskStateIcon = "";
+        // }
+    };
+
+      // this.viewCircleColor = function(index) {
+        // var x = this.itemAr[index].x;
+        // var y = this.itemAr[index].y;
+        // ctx.save();
+        // if (this.itemAr[index].circleColor !== "") {
+            // ctx.globalAlpha = 0.4;
+            // ctx.beginPath();
+            // ctx.arc(this.grSep * x + this.grSepqua * 2, this.grSep * y + this.grSepqua * 2, this.grSepqua*1.5, 0, 2 * Math.PI, false);
+            // ctx.strokeStyle = this.itemAr[index].circleColor;
+            // ctx.lineWidth = 4 * this.grSep/80;
+            // ctx.closePath();
+            // ctx.stroke();
+            // ctx.globalAlpha = 1;
+            // ctx.strokeStyle = 'black';
+            // ctx.lineWidth = 1;
+        // }
+      // };
 
       this.getNextTaskType = function(nxc,nyc){
             for (var i = 0; i < this.itemAr.length; i++) {

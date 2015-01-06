@@ -1,5 +1,7 @@
 class Customer::GardenmapsController < Customer::Base
+
   def index
+p "★index"
     @search_form = Customer::GardenmapSearchForm.new(params[:search])
     
     if params[:search].blank?
@@ -17,7 +19,6 @@ class Customer::GardenmapsController < Customer::Base
         @canvas_id_list = @canvas_id_list + "-" + f.id.to_s
       end 
     end 
-
     #    @gardenmaps = @gardenmaps.order(occurred_at: :desc).includes(:customer).page(params[:page])
   end
 
@@ -84,5 +85,14 @@ class Customer::GardenmapsController < Customer::Base
       flash.now.alert = '入力に誤りがあります。'
       render action: 'edit'
     end
+  end
+
+  def destroy
+    @gardenmap = Gardenmap.find(params[:id])
+    @gardenmap.destroy!
+      if @gardenmap.save
+        flash.notice = '菜園図を削除しました。'
+        redirect_to :customer_gardenmaps
+      end
   end
 end

@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
 <script>
   SelectRow = function(id,vegetable_code) {
     getPlantEventByAjax(id,vegetable_code)
+  };
+  showDialog = function(titleText, cultivate_task_comment) {
+  	if (cultivate_task_comment != "") {
+	  	$("#explantaskComment").val(cultivate_task_comment);
+	  	$("#explantask").dialog({
+	  	  title: titleText,
+	      modal: true,
+	      resizable: true,
+	      maxHeight: 500,
+	      maxWidth : 500,
+	      minHeight: 150,
+	      minWidth : 150,
+	      height: 220,
+	      width : 400
+	    });
+  	} 
   };
 </script>
 </head>
@@ -46,7 +64,9 @@
 
   </br>
   </div>
-  
+  <div id="explantask" style="display:none;">
+  	<textarea id="explantaskComment" style="font-size:2px;" rows='10' cols='51' wrap='soft' disabled="true"></textarea>
+  </div>
   
 <!-- <%= debug(@gardenmaps) %>
 <%= debug(@search_form) %> -->

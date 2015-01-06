@@ -23,22 +23,12 @@ var DRAG;
         taskIndex: null
       },
       dtype: {
-        UI:           'UI',
         Tomato:       'Tomato',
         Strawberry:   'Strawberry',
         Basil:        'Basil',
         TomatoBasil:  'TomatoBasil',
         Marigold:     'Marigold',
-        Cabbage:      'Cabbage',
-        SubFlowCall:  'SubFlowCall',
-        ReturnControl:'ReturnControl',
-        DatetimeWait: 'DatetimeWait',
-        FileWait:     'FileWait',
-        ParallelStart: 'ParallelStart',
-        ParallelJoin:  'ParallelJoin',
-        BranchJoin:    'BranchJoin',
-        FlowStart:     'FlowStart',
-        FlowEnd:       'FlowEnd'
+        Cabbage:      'Cabbage'
       }
     };
 
@@ -58,7 +48,7 @@ var DRAG;
       item: null
     };
     GardenmapEdit.viewTaskInfo = {
-      mouseOverTaskId: "",
+      mouseOverType: "",
       clickTaskId: "",
       item: null
     };
@@ -114,24 +104,6 @@ var DRAG;
         return false;
     };
 
-    GardenmapEdit.getUIParamHTML = function(itemIdx) {
-//                    " onkeydown=\"textValue = this.value;GardenmapEdit.con.taskParam.taskParamId = \"taskName\"\" onkeyup=\"theFunc(this.value)\"></h4>" +
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>タスク名<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.taskName +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'taskName')\"></h4>" +
-                    "<h4>親DivID<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.divId +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'divId')\"></h4>" +
-                    "<h4>初期状態<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.initStatus +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'initStatus')\"></h4>" +
-                    "<h4>トレイタスク<input align='left' type='text' size='48' height='100' value=" +  DRAG.itemAr[itemIdx].param.isTrayTask +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'isTrayTask')\"></h4>" +
-                    "<h4>トレイタスクグループID<input align='left' size='50' type='text' height='100' value=" + DRAG.itemAr[itemIdx].param.trayTaskGroupId +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'trayTaskGroupId')\"></h4>" +
-                    "<h4>タスク権限<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.taskAuth +
-                    " onkeydown=\"beforTaskParam(this.value)\" onkeyup=\"setTaskParam(this.value," + itemIdx + ",'taskAuth')\"></h4></div><p/>";
-            return paramDataHTML;
-
-    };
     GardenmapEdit.getReturnControlParamHTML = function(itemIdx) {
         var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
                     "<h4>条件1<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.condition1 + "></h4>" +
@@ -147,46 +119,6 @@ var DRAG;
                     "<h4>野菜名<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.taskName + "></h4></div><p/>";
         return paramDataHTML;
     };
-    GardenmapEdit.getSubFlowCallParamHTML = function(itemIdx) {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>呼び先フローID<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.flowId + "></h4></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getFileWaitParamHTML = function(itemIdx) {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>監視フォルダ<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.targetFolder + "></h4>" +
-                    "<h4>監視ファイル<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.targetFile + "></h4>" +
-                    "<h4>監視時刻(開始)<input align='left' type='text' size='48' height='100' value=" +  DRAG.itemAr[itemIdx].param.startTime + "></h4>" +
-                    "<h4>監視時刻(終了)<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.endTime + "></h4></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getDatetimeWaitParamHTML = function(itemIdx) {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>日時<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.startDate + "></h4>" +
-                    "<h4>ユーザによる変更を許可<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.canChange + "></h4></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getParallelJoinParamHTML = function() {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<b>&nbsp;属性はありません。</b></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getParallelStartParamHTML = function() {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<b>&nbsp;属性はありません。</b></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getBranchJoinParamHTML = function() {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<b>&nbsp;属性はありません。</b></div><p/>";
-        return paramDataHTML;
-    };
-    GardenmapEdit.getBranchStartParamHTML = function(itemIdx) {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>分岐タイプ<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.branchStartType + "></h4>" +
-                    "<h4>分岐条件(コメント)<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.branchStartDetail + "></h4></div><p/>";
-        return paramDataHTML;
-    };
 
     GardenmapEdit.cvmsClick = function(evt) {
         var cx = evt.pageX - DRAG.cvpos.x;
@@ -199,6 +131,7 @@ var DRAG;
         if (itemIdx !== null ){
         // if(GardenmapEdit.taskMove.now) {
             if (moveTaskIcon.style.display === "none" || moveTaskIcon.style.display === ""){
+            	// タスク移動中の状態に設定
                 // GardenmapEdit.taskLineConnect.now = false;
                 GardenmapEdit.taskMove.now = true;
                 var updSep = 1;
@@ -217,15 +150,18 @@ var DRAG;
                 moveTaskIcon.style.display = "none";
             }
         	
-            // if (GardenmapEdit.viewTaskInfo.clickTaskId === "" || GardenmapEdit.viewTaskInfo.clickTaskId !== DRAG.itemAr[itemIdx].taskId) {
-                // if ( GardenmapEdit.viewTaskInfo.clickTaskId !== DRAG.itemAr[itemIdx].taskId) {
-                    // removetable = $("#" + GardenmapEdit.con.id.taskParamViewDiv);
-                    // if(removetable !== null){
-                        // removetable.remove();
-                    // }
-                    // if(DRAG.itemAr[itemIdx].type === "UI") {
-                         // paramDataHTML = GardenmapEdit.getUIParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "ReturnControl") {
+        	// 野菜情報を表示
+            if (GardenmapEdit.viewTaskInfo.clickTaskId === "" || GardenmapEdit.viewTaskInfo.clickTaskId !== DRAG.itemAr[itemIdx].taskId) {
+                if ( GardenmapEdit.viewTaskInfo.mouseOverType !== DRAG.itemAr[itemIdx].type) {
+                    removetable = $("#taskParamViewDiv");
+                    if(removetable !== null){
+                        removetable.remove();
+                    }
+                    // イチゴ情報のDOMを構築する
+                    if(DRAG.itemAr[itemIdx].type === "Strawberry") {
+                      paramDataHTML = VegetableInfo.getStrawberryParamHTML();
+                    }
+                    // else if(DRAG.itemAr[itemIdx].type === "ReturnControl") {
                         // paramDataHTML = GardenmapEdit.getReturnControlParamHTML(itemIdx);
                     // } else if(DRAG.itemAr[itemIdx].type === "Tomato" ||
                               // DRAG.itemAr[itemIdx].type === "Strawberry") {
@@ -245,11 +181,10 @@ var DRAG;
                     // } else if(DRAG.itemAr[itemIdx].type === "BranchJoin") {
                         // paramDataHTML = GardenmapEdit.getBranchJoinParamHTML();
                     // }
-                    // $("#" + GardenmapEdit.con.id.taskParamView).append( paramDataHTML );
-                    // GardenmapEdit.viewTaskInfo.mouseOverTaskId = DRAG.itemAr[itemIdx].taskId;
-// 
-                // }
-            // }
+                    $("#taskParamView").append( paramDataHTML );
+                    GardenmapEdit.viewTaskInfo.mouseOverType = DRAG.itemAr[itemIdx].type;
+               }
+            }
         }
     };
     GardenmapEdit.countLength = function (str) {
@@ -314,25 +249,6 @@ var DRAG;
         
       };
 
-    formatDateHeisei = function(date, format) {
-      if (!format) {
-          format = 'YY/MM/DD hh:mm:ss.SSS';
-      }
-      var heisei = date.getFullYear()-1988;
-      format = format.replace(/YY/g, heisei);
-      format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
-      format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
-      format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
-      format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
-      format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
-      if (format.match(/S/g)) {
-        var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
-        var length = format.match(/S/g).length;
-        for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
-      }
-      return format;
-    };
-    
     changeCoordinate = function(taskIndex) {
         if (GardenmapEdit.taskMove.beforeCoordination !== DRAG.itemAr[taskIndex].x + "-" + DRAG.itemAr[taskIndex].y){
             for (var i = 0; i < DRAG.jsonFlowObj.taskLayouts.length; i++) {
@@ -529,6 +445,38 @@ cancelFullScreen =function(event) {
 window.addEventListener('keypress', cancelFullScreen, true);
 window.addEventListener('keydown', cancelFullScreen, true);
 
+/**
+* マウスクリックイベント（Canvas以外の野菜アイコンをクリックした場合、野菜情報を表示する
+*
+* @param {} evt
+*/
+window.addEventListener("click", function(event) {
+  var type = event.target.id;
+  var paramDataHTML = null;
+
+  if ( GardenmapEdit.viewTaskInfo.mouseOverType != type) {
+      // 野菜情報を表示
+
+      // イチゴ情報のDOMを構築する
+      if(type === "Strawberry") {
+        // paramDataHTML = GardenmapEdit.getStrawberryParamHTML();
+        paramDataHTML = VegetableInfo.getStrawberryParamHTML();
+      } else {
+     	GardenmapEdit.viewTaskInfo.mouseOverType = "";
+      }
+      if (paramDataHTML != null) {
+		  removetable = $("#taskParamViewDiv");
+		  if(removetable !== null){
+		      removetable.remove();
+		  }
+	      $("#taskParamView").append( paramDataHTML );
+	      GardenmapEdit.viewTaskInfo.mouseOverType = type;
+      }
+  } else {
+  	GardenmapEdit.viewTaskInfo.mouseOverType = "";
+  }
+}, false);
+
 window.addEventListener("dragover", function(event) {
   event.preventDefault();  // ブラウザのデフォルトの画像表示処理をOFF
 }, false);
@@ -539,16 +487,19 @@ window.addEventListener("dragstart", function(event) {
 }, false);
 
 window.addEventListener("drop", function(event) {
-  if(GardenmapEdit.taskMove.now === true){
-     var cx = event.pageX - DRAG.cvpos.x;
-     var cy = event.pageY - DRAG.cvpos.y;
-
-     DRAG.itemAr[GardenmapEdit.taskMove.item].x = DRAG.getXCoordinate(cx);
-     DRAG.itemAr[GardenmapEdit.taskMove.item].y = DRAG.getYCoordinate(cy);
-     GardenmapEdit.taskMove.now = false;
-     moveTaskIcon.style.display = "none";
-     changeCoordinate(GardenmapEdit.taskMove.item);
-  }
+  // if(GardenmapEdit.taskMove.now === true){
+     // var cx = event.pageX - DRAG.cvpos.x;
+     // var cy = event.pageY - DRAG.cvpos.y;
+// 
+     // DRAG.itemAr[GardenmapEdit.taskMove.item].x = DRAG.getXCoordinate(cx);
+     // DRAG.itemAr[GardenmapEdit.taskMove.item].y = DRAG.getYCoordinate(cy);
+     // GardenmapEdit.taskMove.now = false;
+     // moveTaskIcon.style.display = "none";
+     // changeCoordinate(GardenmapEdit.taskMove.item);
+     // // 位置JSONの変更
+     // ff = JSON.stringify(DRAG.jsonFlowObj);
+     // $('#form_gardenmap_plant_set_definition_json').val(JSON.stringify(DRAG.jsonFlowObj));
+  // }
   canvas = document.getElementById(GardenmapEdit.con.id.cvm);
   if ( ! canvas || ! canvas.getContext ) { return false; }
   ctx = canvas.getContext("2d");
@@ -571,7 +522,21 @@ window.addEventListener("drop", function(event) {
   var itemIdx = DRAG.checkItem(cx, cy);
 
   if( itemIdx === null ) {
-  	if(dragTaskType.indexOf("CompanionPlant") < 0){
+	if(GardenmapEdit.taskMove.now === true){
+		// 野菜の位置情報を変更
+	     var cx = event.pageX - DRAG.cvpos.x;
+	     var cy = event.pageY - DRAG.cvpos.y;
+	
+	     DRAG.itemAr[GardenmapEdit.taskMove.item].x = DRAG.getXCoordinate(cx);
+	     DRAG.itemAr[GardenmapEdit.taskMove.item].y = DRAG.getYCoordinate(cy);
+	     GardenmapEdit.taskMove.now = false;
+	     moveTaskIcon.style.display = "none";
+	     changeCoordinate(GardenmapEdit.taskMove.item);
+	     // 位置JSONの変更
+	     ff = JSON.stringify(DRAG.jsonFlowObj);
+	     // $('#form_gardenmap_plant_set_definition_json').val(JSON.stringify(DRAG.jsonFlowObj));
+    }
+  	else if(dragTaskType.indexOf("CompanionPlant") < 0){
         // 野菜を菜園図に追加
 	    newTaskId = Date.now() + rtnXCoordinate + "-" + dragTaskType + "-" + "new";
 	    addTaskData = JSON.parse('{"taskId":"' + newTaskId + '","taskType":"' + dragTaskType + '","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"}');

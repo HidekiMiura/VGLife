@@ -1,0 +1,9 @@
+<%= f.fields_for f.object.gardenmap do |ff| %>
+  <%= markup do |m| 
+    p = GardenmapFormPresenter.new(ff, self)
+    m << p.garden_map_fields_block()
+  end %>
+  <%= markup(:a, style: 'font-size:10px;float: right;') do |m|
+      m.text I18n.t('com.zoom100')
+  end %>
+<% end %>

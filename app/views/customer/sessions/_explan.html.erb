@@ -1,0 +1,24 @@
+<div class="explan">
+  <h1><%= t('top.index.vegetableCite') %></h1>
+  <img src="/assets/explan/vegetableFunctions.png"  width="300" height="180">
+  <input type="button" value=<%= t('top.index.descriptionFunctions') %> onclick='showExplanVegetable()'>
+  <div id="explanvegetable" style="display:none;"  title="菜園サイト">
+    <object width="820" height="700" data="assets/Explan_VegetableFunctions.pdf"></object>
+  </div>
+  <h1><%= t('top.index.whatsNew') %></h1>
+  <table class="listing" style='overflow: scroll;overflow-x: hidden;background: #ffffff'>
+    <% @whatsnews.each do |m| %>
+      <tr>
+　　  　　    <td><div style='float:left; height: auto;width: 490px;border-bottom-width: 2px;border-bottom-style: solid;border-bottom-color: #DBDBDB;background-repeat: no-repeat;background-position: left center;background-color: #FFF;'>
+	      <img src="/assets/explan/whatsnewsline_start.png" style='float:left'/>&nbsp;&nbsp;
+	      <a href=<%= m.transition_url %> style="float:left; font-size:9px; text-decoration: none"><%= m.reflect_start_date %>&nbsp;&nbsp;<%= m.show_text %></a>
+  	      <img src="/assets/explan/whatsnewsline_end.png" style='float:right'/></div></td>
+      </tr>
+    <% end %>
+  </table>
+  <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank" style='float:left'><img src="/assets/explan/160x41_Get_Flash_Player.jpg" width="200" height="21" border="0" style='float:right'></a>
+  <a style='float:right;font-size:9px'>
+    Adobe Flash Player 7以上のプラグインが必要です。<br/>
+            お持ちでない方はこちらからダウンロードしてください。
+  </a>
+</div>

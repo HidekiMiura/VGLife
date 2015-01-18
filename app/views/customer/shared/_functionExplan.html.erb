@@ -1,0 +1,30 @@
+<% if current_customer %>
+    <% if @function == 'gardenmaps.edit' || @function == 'gardenmaps.new' %>
+    <div class="menu" style='height:942px;'>
+      <h1><%= '操作説明' %></h1>
+      <br/>
+      <h2 align=left>【野菜を菜園図に追加】<br/>一番上の野菜アイコンを下図にドラッグ＆ドロップし追加する。
+    　　　　<% if @function == 'gardenmaps.new' %>
+      　　　　　<h2 align=left>・小さな野菜アイコンを含んでいる野菜アイコンはお勧めのコンパニオンプランツです。下図にドロップした場合、複数の野菜が追加される。
+    　　　　<% end %>
+      <h2 align=left>【菜園図の野菜の移動】<br/>移動したい野菜をクリックし青枠の野菜アイコンを表示させ、移動したい場所にドラッグ＆ドロップする。<br/>・移動をキャンセルする場合<br/>&nbsp;&nbsp;Escapeキーを押す。
+      <h2 align=left>【各野菜の詳細情報】<br/>野菜の詳細情報を見たい場合、一番上の野菜アイコンまたは菜園図の野菜アイコンをクリックする。クリックすると下にクリックした野菜の詳細情報が表示される。
+      <h2 align=left>【各野菜の詳細情報】<br/>野菜の詳細情報を見たい場合、一番上の野菜アイコンまたは菜園図の野菜アイコンをクリックする。クリックすると下にクリックした野菜の詳細情報が表示される。
+      <h2 align=left>・詳細情報の説明<br/>&nbsp;&nbsp;難易度<h_star>★</h_star>☆☆☆☆ 簡単</h2>
+    </div>
+    <% elsif @function == 'gardenplans.index' %>
+      <div class="menu" style='height:400px;'>
+        <h1><%= '操作説明' %></h1>
+        <br/>
+        <h2 align=left>【初期表示内容】<br/>今年度の菜園図に追加した野菜全ての一覧が表示される。
+        <h2 align=left>【野菜栽培計画の表示】<br/>野菜一覧の野菜行の野菜名をクリックすると、野菜の栽培計画が表示される。
+        <h2 align=left>【タスク詳細情報表示】<br/>（施肥、追肥等の詳細情報）<br/>野菜栽培計画の左タスク名称をクリックすると、そのタスクの詳細情報が表示される。
+      </div>
+    <% elsif @function == 'gardenmaps.index' %>
+      <div class="menu" style='height:400px;'>
+        <h1><%= '操作説明' %></h1>
+        <br/>
+        <h2 align=left>【初期表示内容】<br/>今年度の菜園図一覧が表示される。
+      </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,12 @@
+<% @title = '顧客の新規登録' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for @customer_form, as: 'form', url: :customer_accountcreate do |f| %>
+    <%= render 'account_form', f: f %>
+    <div class="buttons">
+      <%= link_to 'キャンセル', :customer_root %>
+      <%= f.submit '登録'%><br />
+    </div>
+  <% end %>
+</div>

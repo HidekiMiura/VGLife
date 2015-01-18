@@ -10,17 +10,15 @@
 <body>
   <div id="wrapper">
   	<%= render 'customer/shared/header' %>
+    <%= render 'shared/footer' %>
   	<div id="container">
-      <%= 
-	  if I18n.locale.to_s == "en"
-	  	render 'customer/shared/functionMenu_en' 
-	  else
-		render 'customer/shared/functionMenu'
-	  end
-      %>
+      <div style='float:left;width:210px;'>
+      	<%= render 'customer/shared/functionMenu' %>
+      	<%= render 'customer/shared/functionExplan' %>
+      </div>
       <%= yield %>
   	</div>
-  	<%= render 'shared/footer' %>
   </div>
 </body>
+
 </html>

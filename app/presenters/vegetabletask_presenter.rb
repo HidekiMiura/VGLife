@@ -8,7 +8,12 @@ class VegetabletaskPresenter < ModelPresenter
         m.input(:value =>cultivate_task_name, :type =>"button", :style =>"background: none;text-decoration: underline;", :onClick =>"showDialog(\"" + cultivate_task_name + "\",\"" + cultivate_task_comment + "\")")
       end
       m.td do
-        m.input(:type =>"image", :src =>"/assets/" + cultivate_task_image)
+        if cultivate_task_image.include?("bmp")
+          m.input(:type =>"image", :src =>"/assets/gardenplans/" + cultivate_task_image)
+        else
+          m << '&nbsp;&nbsp;&nbsp;&nbsp;'
+          m.input(:type =>"text", :value =>cultivate_task_image, :disabled =>true, :size =>77)
+        end
       end
     end
   end

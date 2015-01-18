@@ -21,7 +21,7 @@ class Customer::GardenmapForm
   private
   def gardenmap_params
     @params.permit(
-      :customer_id, :garden_year, :garden_type, :gardenmap_title, :plant_set_definition_json, :cultivate_vegetable_list, :seed_plant_set_term  
+      :customer_id, :garden_year, :garden_type, :gardenmap_title, :plant_set_definition_json, :cultivate_vegetable_list, :seed_plant_set_term, :map_width_cell, :map_height_cell, :max_canvas_X_cell, :max_canvas_Y_cell  
     )
   end
 end

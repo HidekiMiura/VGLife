@@ -27,37 +27,9 @@ var GardenmapCanvasCom = {}; // namespace
     GardenmapCanvasCom.SubFlowCall = function(flowId) {
         this.flowId = flowId;
     };
-    GardenmapCanvasCom.ReturnControl = function(condition1,condition2,condition3,condition4,condition5,returnConditionDetail) {
-        this.condition1 = condition1;
-        this.condition2 = condition2;
-        this.condition3 = condition3;
-        this.condition4 = condition4;
-        this.condition5 = condition5;
-        this.returnConditionDetail = returnConditionDetail;
-    };
-    GardenmapCanvasCom.DatetimeWait = function(startDate,canChange) {
-        this.startDate = startDate;
-        this.canChange = canChange;
-    };
-    GardenmapCanvasCom.FileWait = function(targetFolder,targetFile) {
-        this.targetFolder = targetFolder;
-        this.targetFile = targetFile;
-    };
-    GardenmapCanvasCom.ParallelStart = function() {
-    };
-    GardenmapCanvasCom.ParallelJoin = function() {
-    };
-    GardenmapCanvasCom.BranchJoin = function() {
-    };
-    GardenmapCanvasCom.FlowStart = function() {
-    };
-    GardenmapCanvasCom.FlowEnd = function() {
-    };
-    GardenmapCanvasCom.ParallelStart = function() {
-    };
     
     // カンバスの初期化メソッド
-    GardenmapCanvasCom.canv = function(canvasId, ctx, grSep, w, h, names, jsonFlowObj,cultivateVegetableList) {
+    GardenmapCanvasCom.canv = function(canvasId, ctx, grSep, w, h, xMax, yMax, names, jsonFlowObj,cultivateVegetableList) {
       this.canvasId = canvasId;
       this.ctx = ctx;
       this.area = {w:w, h:h};
@@ -68,25 +40,45 @@ var GardenmapCanvasCom = {}; // namespace
       this.grSepqua = this.grSep / 4;
       this.grSepx0 = 10;
       this.grSepy0 = 10;
-      this.grWidth = 1;
+      this.grWidth = 0.2;
       this.grXAr = [];
       this.grRcv = false;
       this.grYAr = [];
       this.grBcv = false;
       this.itemAr = [];
+      this.maxcanvasXCell = xMax;
+      this.maxcanvasYCell = yMax;
       this.jsonFlowObj = jsonFlowObj;
 
 	  //Imageオブジェクトを生成して、画像ファイルを先読みしておく
       this.imgTomato = new Image();
-      this.imgTomato.src = "/assets/Tomato_off.png";
+      this.imgTomato.src = "/assets/vegetables/Tomato_off.png";
       this.imgStrawberry = new Image();
-      this.imgStrawberry.src = "/assets/Strawberry_off.png";
+      this.imgStrawberry.src = "/assets/vegetables/Strawberry_off.png";
       this.imgBasil = new Image();
-      this.imgBasil.src = "/assets/Basil_off.png";
+      this.imgBasil.src = "/assets/vegetables/Basil_off.png";
       this.imgMarigold = new Image();
-      this.imgMarigold.src = "/assets/Marigold_off.png";
+      this.imgMarigold.src = "/assets/vegetables/Marigold_off.png";
       this.imgCabbage = new Image();
-      this.imgCabbage.src = "/assets/Cabbage_off.png";
+      this.imgCabbage.src = "/assets/vegetables/Cabbage_off.png";
+      this.imgSpinach = new Image();
+      this.imgSpinach.src = "/assets/vegetables/Spinach_off.png";
+      this.imgGarlandChrysanthemun = new Image();
+      this.imgGarlandChrysanthemun.src = "/assets/vegetables/GarlandChrysanthemun_off.png";
+      this.imgBrick = new Image();
+      this.imgBrick.src = "/assets/vegetables/Brick_ornament.png";
+      this.imgWoodChip = new Image();
+      this.imgWoodChip.src = "/assets/vegetables/WoodChip_ornament.png";
+      this.imgStraw = new Image();
+      this.imgStraw.src = "/assets/vegetables/Straw_ornament.png";
+      this.imgBedOfBrick = new Image();
+      this.imgBedOfBrick.src = "/assets/vegetables/BedOfBrick_ornament.png";
+      this.imgSoil = new Image();
+      this.imgSoil.src = "/assets/vegetables/Soil_ornament.png";
+      this.imgPicket = new Image();
+      this.imgPicket.src = "/assets/vegetables/Picket_ornament.png";
+      this.imgRabbit = new Image();
+      this.imgRabbit.src = "/assets/vegetables/Rabbit_ornament.png";
 
       this.cultivateVegetableList = cultivateVegetableList;
 
@@ -159,7 +151,16 @@ var GardenmapCanvasCom = {}; // namespace
          	        taskType === names.con.dtype.Basil ||
          	        taskType === names.con.dtype.TomatoBasil ||
          	        taskType === names.con.dtype.Marigold ||
-         	        taskType === names.con.dtype.Cabbage ){
+         	        taskType === names.con.dtype.Cabbage ||
+         	        taskType === names.con.dtype.Spinach ||
+         	        taskType === names.con.dtype.GarlandChrysanthemun ||
+         	        taskType === names.con.dtype.Brick ||
+         	        taskType === names.con.dtype.WoodChip ||
+         	        taskType === names.con.dtype.Straw ||
+         	        taskType === names.con.dtype.BedOfBrick ||
+         	        taskType === names.con.dtype.Soil ||
+         	        taskType === names.con.dtype.Picket ||
+         	        taskType === names.con.dtype.Rabbit ){
             param = new GardenmapCanvasCom.Vegetable(
                     this.jsonFlowObj.taskData[dataIndex].taskName);
          } else if (taskType === names.con.dtype.ReturnControl){
@@ -308,23 +309,59 @@ var GardenmapCanvasCom = {}; // namespace
 		    return "マリーゴールド";
 		  case 'Cabbage':
 		    return "キャベツ";
+		  case 'Spinach':
+		    return "ホウレンソウ";
+		  case 'GarlandChrysanthemun':
+		    return "春菊";
+		  case 'Brick':
+		    return "ブロック";
+		  case 'WoodChip':
+		    return "ウッドチップ";
+		  case 'Straw':
+		    return "わら";
+		  case 'BedOfBrick':
+		    return "ブロック花壇";
+		  case 'Soil':
+		    return "土";
+		  case 'Picket':
+		    return "連杭";
+		  case 'Rabbit':
+		    return "うさぎ置物";
 		 }      	
      };
 
      this.getVegetableId = function(taskType) {
        switch (taskType){
 		  case 'Tomato':
-		    return 3;
+		    return 03;
 		  case 'Strawberry':
-		    return 5;
+		    return 05;
 		  case 'Basil':
-		    return 6;
+		    return 06;
 		  case 'TomatoBasil':
-		    return 9;
+		    return 09;
 		  case 'Marigold':
-		    return 7;
+		    return 07;
 		  case 'Cabbage':
-		    return 8;
+		    return 08;
+		  case 'Spinach':
+		    return 09;
+		  case 'Brick':
+		    return 10;
+		  case 'WoodChip':
+		    return 11;
+		  case 'Straw':
+		    return 12;
+		  case 'BedOfBrick':
+		    return 13;
+		  case 'Soil':
+		    return 14;
+		  case 'Picket':
+		    return 15;
+		  case 'Rabbit':
+		    return 16;
+		  case 'GarlandChrysanthemun':
+		    return 17;
 		 }      	
      };
      this.setViewTaskstateIcon = function(index, state) {
@@ -335,13 +372,17 @@ var GardenmapCanvasCom = {}; // namespace
              this.itemAr[index].type === names.con.dtype.TomatoBasil ||
              this.itemAr[index].type === names.con.dtype.Marigold ||
              this.itemAr[index].type === names.con.dtype.Cabbage ||
-             this.itemAr[index].type === names.con.dtype.FileWait ||
-             this.itemAr[index].type === names.con.dtype.SubFlowCall)){
-             if ((typeof state === "undefined" || state === "SLEEP" || state === "WAIT" || state === "PAUSE" || state === "CANCEL")){
-                taskStateIcon = '_off';
-             } else if ((state === "RUN"|| state === "COMPLETE")){
-                taskStateIcon = '_on';
-             }
+             this.itemAr[index].type === names.con.dtype.Spinach ||
+             this.itemAr[index].type === names.con.dtype.GarlandChrysanthemun )){
+            taskStateIcon = '_off';
+        } else if (this.itemAr[index].type === names.con.dtype.Brick ||
+                   this.itemAr[index].type === names.con.dtype.WoodChip ||
+                   this.itemAr[index].type === names.con.dtype.Straw ||
+                   this.itemAr[index].type === names.con.dtype.BedOfBrick ||
+                   this.itemAr[index].type === names.con.dtype.Soil ||
+                   this.itemAr[index].type === names.con.dtype.Picket ||
+                   this.itemAr[index].type === names.con.dtype.Rabbit ) {
+            taskStateIcon = '_ornament';
         } else {
             taskStateIcon = "";
         }
@@ -359,15 +400,19 @@ var GardenmapCanvasCom = {}; // namespace
         // グリッド表示
         this.ctx.save();
         // this.ctx.globalAlpha = 0.5;透過性
-        this.ctx.strokeStyle = "#662100";
+        this.ctx.strokeStyle = "#800000";
         this.ctx.lineWidth = this.grWidth;
-        this.ctx.strokeRect(0,0,this.grXAr.length*(this.grSep + 2),this.grYAr.length*(this.grSep + 2));
+        this.ctx.strokeRect(0,0,w,h);
 	    for (var i = 0; i < this.grXAr.length; i++) {
 	      this.ctx.beginPath();
 	      this.ctx.moveTo(this.grXAr[i], 0);
 	      this.ctx.lineTo(this.grXAr[i], this.area.h);
 	      this.ctx.stroke();
 	    }
+	    this.ctx.beginPath();
+	    this.ctx.moveTo(0,0);
+	    this.ctx.lineTo(this.area.w, 0);
+	    this.ctx.stroke();
 	    for (var i = 0; i < this.grYAr.length; i++) {
 	      this.ctx.beginPath();
 	      this.ctx.moveTo(0,this.grYAr[i]);
@@ -387,18 +432,43 @@ var GardenmapCanvasCom = {}; // namespace
         // }
      };
 
+     this.viewL = function() {
+        for (var i = 0; i < this.itemAr.length; i++) {
+          this.viewImageL(i);
+        }
+        // for (var i = 0; i < this.itemAr.length; i++) {
+          // this.viewCircleColor(i);
+        // }
+     };
+
+    this.setMaxCell = function(maxXCell,maxYCell) {
+    	if (this.maxcanvasXCell < maxXCell) {
+    		this.maxcanvasXCell = maxXCell;
+    	} 
+    	if (this.maxcanvasYCell < maxYCell) {
+    		this.maxcanvasYCell = maxYCell;
+    	} 
+    };
+
     this.viewImage = function(index) {
         var x = this.itemAr[index].x;
         var y = this.itemAr[index].y;
+        // 最大マスの更新
+        this.setMaxCell(Number(x)+1, Number(y)+1);
         var type = this.itemAr[index].type;
         // ctx.save();
         var img = new Image();
-        var width = this.grSephf *1.5;
-        var height = this.grSephf *1.5;
+        // var width = this.grSephf *1.5;
+        // var height = this.grSephf *1.5;
+        var width = this.grSephf *2;
+        var height = this.grSephf *2;
         img.src = this.getImgSrc(this.itemAr[index].type);
+        
         var canvasId = this.canvasId;
-        var xxc = this.grSep * x + this.grSepqua/2;
-        var yyc = this.grSep * y + this.grSepqua/2;
+        // var xxc = this.grSep * x + this.grSepqua/2;
+        // var yyc = this.grSep * y + this.grSepqua/2;
+        var xxc = this.grSep * x;
+        var yyc = this.grSep * y;
         var canvas = document.getElementById(canvasId);
         var ctx = canvas.getContext("2d");
         // ctx.save();
@@ -417,6 +487,28 @@ var GardenmapCanvasCom = {}; // namespace
         // };
       };
 
+    this.viewImageL = function(index) {
+        var x = this.itemAr[index].x;
+        var y = this.itemAr[index].y;
+        var type = this.itemAr[index].type;
+        // ctx.save();
+        var img = new Image();
+        var width = this.grSephf *2;
+        var height = this.grSephf *2;
+        img.src = "/assets/vegetables/" + this.itemAr[index].stateIcon;
+        var xxc = this.grSep * x;
+        var yyc = this.grSep * y;
+        img.onload = function() {
+            var canvas = document.getElementById(canvasId);
+            var ctx = canvas.getContext("2d");
+            // ctx.save();
+            ctx.beginPath();
+            ctx.drawImage(img,xxc, yyc,width,height);
+            ctx.closePath();
+            ctx.stroke();
+        };
+      };
+
     this.getImgSrc = function(type) {
     	
         if (type === names.con.dtype.Tomato ){
@@ -431,6 +523,24 @@ var GardenmapCanvasCom = {}; // namespace
         	return this.imgStrawberry.src;
         } else if (type === names.con.dtype.Cabbage ){
         	return this.imgCabbage.src;
+        } else if (type === names.con.dtype.Spinach ){
+        	return this.imgSpinach.src;
+        } else if (type === names.con.dtype.GarlandChrysanthemun ){
+        	return this.imgGarlandChrysanthemun.src;
+        } else if (type === names.con.dtype.Brick ){
+        	return this.imgBrick.src;
+        } else if (type === names.con.dtype.WoodChip ){
+        	return this.imgWoodChip.src;
+        } else if (type === names.con.dtype.Straw ){
+        	return this.imgStraw.src;
+        } else if (type === names.con.dtype.BedOfBrick ){
+        	return this.imgBedOfBrick.src;
+        } else if (type === names.con.dtype.Soil ){
+        	return this.imgSoil.src;
+        } else if (type === names.con.dtype.Picket ){
+        	return this.imgPicket.src;
+        } else if (type === names.con.dtype.Rabbit ){
+        	return this.imgRabbit.src;
         }
 
 

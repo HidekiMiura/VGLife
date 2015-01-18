@@ -1,20 +1,54 @@
 ja:
+  com:
+    requiredMessage: '印のついた項目は入力必須です。'
+    zoom100: '　表示倍率100%で操作して下さい。'
+  functionMenu:
+    title: 菜園サイトメニュー
+    vegetableGardenMap: 菜園図 
+    vegetableGardenPlan: 菜園計画
+    recipe: レシピ
   top:
     index:
-      vegetableCite: 菜園サイト
-      allowanceManagement: お小遣い管理
+      vegetableCite: 菜園サイトについての説明
+      whatsNew: 新着情報
       businessManagement: 営業管理
       buildingCite: サイト構築
       memberDevelopmentTeamRails4: Rails4開発チーム要員
       descriptionFunctions: 機能説明
       estimationRequest: 見積依頼
+      developmentResults: 開発実績
       offer: オファー
+      mainTitle: 野菜菜園生活
+      logout: ログアウト
+      registrationInfo: 登録情報
+  gardenplans:    #=> controller
+    index:      #=> action
+      searchButtonLabel: 検索
+      year: 菜園年度
+      term: 収穫時期
+      vegetable: 野菜
+      vegetableGardenPlan: 菜園計画
   gardenmaps:    #=> controller
     index:      #=> action
       searchButtonLabel: 検索
       year: 菜園年度
+      term: 収穫時期
+      gardenTitle: 菜園図タイトル
+      vegetableGarden: 菜園図
+      action: アクション
+      edit: 編集
+      delete: 削除
+      new: 新しい菜園図を作成
+      title: 菜園図
     edit:
       title: 菜園図編集
+      edit: 編集
+      term: 収穫時期
+      year: 菜園年度
+      gardenTitle: 菜園図タイトル
+      gardenTitlePlaceholder: 菜園図のタイトルを入力して下さい。
+      mapWidth: 横マス 
+      mapHeight: 縦マス 
   views:
     pagination:
       first: "&laquo; 最初"

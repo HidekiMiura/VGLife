@@ -19,7 +19,6 @@ class Customer::GardenplaneventForm
 
   def assign_attributes(params = {})
     @params = params[:gardenplanevent]
-      p "★gardenplanevent：" + gardenplanevent.inspect
     gardenplanevent.assign_attributes(gardenplanevent_params)
   end
 

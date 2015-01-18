@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214122803) do
+ActiveRecord::Schema.define(version: 20150117120338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 20141214122803) do
   add_index "addresses", ["type", "city"], name: "index_addresses_on_type_and_city", using: :btree
   add_index "addresses", ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true, using: :btree
   add_index "addresses", ["type", "prefecture", "city"], name: "index_addresses_on_type_and_prefecture_and_city", using: :btree
+
+  create_table "cultivatetasks", force: true do |t|
+    t.string   "cultivate_task_code"
+    t.string   "cultivate_task_name"
+    t.string   "temperate_zone_division"
+    t.string   "cultivate_task_type"
+    t.string   "cultivate_task_term"
+    t.string   "cultivate_task_comment"
+    t.string   "cultivate_task_image"
+    t.string   "language_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cultivatetasks", ["cultivate_task_code"], name: "index_cultivatetasks_on_cultivate_task_code", unique: true, using: :btree
+  add_index "cultivatetasks", ["language_code"], name: "index_cultivatetasks_on_language_code", using: :btree
 
   create_table "customer_events", force: true do |t|
     t.integer  "customer_id", null: false
@@ -76,15 +92,19 @@ ActiveRecord::Schema.define(version: 20141214122803) do
   add_index "customers", ["given_name_kana"], name: "index_customers_on_given_name_kana", using: :btree
 
   create_table "gardenmaps", force: true do |t|
-    t.integer  "customer_id",                             null: false
-    t.integer  "garden_year",                             null: false
+    t.integer  "customer_id",                              null: false
+    t.integer  "garden_year",                              null: false
     t.string   "garden_type"
     t.string   "gardenmap_title"
-    t.string   "plant_set_definition_json", limit: 10000
+    t.string   "plant_set_definition_json", limit: 100000
     t.string   "seed_plant_set_term"
     t.string   "cultivate_vegetable_list"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "map_width_cell"
+    t.integer  "map_height_cell"
+    t.integer  "max_canvas_X_cell"
+    t.integer  "max_canvas_Y_cell"
   end
 
   add_index "gardenmaps", ["customer_id", "garden_year"], name: "index_gardenmaps_on_customer_id_and_garden_year", using: :btree
@@ -198,6 +218,17 @@ ActiveRecord::Schema.define(version: 20141214122803) do
 
   add_index "vegetabletasks", ["cultivate_task_code"], name: "index_vegetabletasks_on_cultivate_task_code", using: :btree
   add_index "vegetabletasks", ["language_code"], name: "index_vegetabletasks_on_language_code", using: :btree
+
+  create_table "whatsnews", force: true do |t|
+    t.date     "reflect_start_date", null: false
+    t.date     "reflect_end_date",   null: false
+    t.string   "transition_url",     null: false
+    t.string   "show_text",          null: false
+    t.string   "whatsnews_type",     null: false
+    t.string   "update_id",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   add_foreign_key "customer_events", "customers", name: "customer_events_customer_id_fk"
 

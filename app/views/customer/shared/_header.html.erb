@@ -1,14 +1,8 @@
 <header>
 	<%
-      if I18n.locale.to_s == "en"
-	  	@title = 'vegetable garden life'
-	  	@Logout = 'Logout'
-	  	@RegistrationInfo = 'registration information'
-	  else
-		@title = '野菜菜園生活'
-		@Logout = 'ログアウト'
-	  	@RegistrationInfo = '登録情報'
-	  end
+		@title = I18n.t('top.index.mainTitle')
+		@Logout = I18n.t('top.index.logout')
+		@RegistrationInfo = I18n.t('top.index.registrationInfo')
 	%>
 
 	<span class="logo-mark"><%= @title %></span>
@@ -30,10 +24,10 @@
 	%>
 	<%=
 	  if I18n.locale.to_s == "en"
-	  	link_to 'Japanese',  :controller=>"customer/top", :action => 'index', :locale =>'ja'
- 
+		link_to 'Japanese', :controller=>"customer/top", :action => 'index', :locale =>'ja'
 	  else
-		link_to 'English',  :controller=>"customer/top", :action => 'index', :locale =>'en'
+		link_to 'English', :controller=>"customer/top", :action => 'index', :locale =>'en'
 	  end
 	%>
+    <input type='hidden' id='language' value=<%= I18n.locale.to_s %>>
 </header>

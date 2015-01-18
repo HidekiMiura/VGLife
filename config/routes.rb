@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   constraints host: config[:customer][:host] do
     namespace :customer, path: config[:customer][:path] do
       root 'top#index'
-      get 'top/index_en' => 'top#index_en', as: :index_en
+      get 'accountnew' => 'sessions#accountnew', as: :accountnew
+      post 'accountcreate' => 'sessions#accountcreate', as: :accountcreate
       get 'login' => 'sessions#new', as: :login
       post 'session' => 'sessions#create', as: :session
+      post 'account' => 'accounts#new', as: :account
       post 'gardenmaps/sort' => 'gardenmaps#sort', as: :sort
       get 'gardenplans/index' => 'gardenplans#index', as: :index
       post 'gardenmaps/:id' => 'gardenmaps#update', as: :update

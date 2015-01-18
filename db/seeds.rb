@@ -9,8 +9,8 @@
 #　table_names = %w(staff_members administrators customers vegetables)
 # table_names = %w(staff_events customer_events)
 # table_names = %w(gardenmaps gardenplans  gardenplanevents)
-
- table_names = %w(gardenmaps gardenplans  gardenplanevents)
+# table_names = %w(whatsnews)
+ table_names = %w(whatsnews)
 table_names.each do |table_name|
   path = Rails.root.join('db', 'seeds',Rails.env, "#{table_name}.rb")
   if File.exist?(path)

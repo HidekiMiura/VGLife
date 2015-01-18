@@ -1,16 +1,20 @@
 <% @title = 'ログイン' %>
 <div id="login-form">
-	<h1><%= @title %></h1>
+	<h1><%= @title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to 'ユーザ登録', :action =>'accountnew' %></h1>
 	<%= form_for @form, url: :customer_session do |f| %>
       <%= markup do |m| 
         p = CustomerFormPresenter.new(f, self)
         m.br
-        m << p.text_field_block(:email, 'メールアドレス', size: 32)
-        m << p.login_password_field_block(:password, 'パスワード', size: 32)
+        m << p.text_field_block(:email, 'メールアドレス', size: 22)
+        m << p.login_password_field_block(:password, 'パスワード', size: 22)
       end %>
 	  <div class="loginbuttons">
-        <%= f.submit 'ログイン' %><br />
+        <%= f.submit 'ログイン', :actiontype =>'login' %>
+      <br />
       </div>
     <% end %>
 </div>
+<%= render 'explan' %>
+<%= render 'ads' %>
 	

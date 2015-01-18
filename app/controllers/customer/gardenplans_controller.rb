@@ -1,11 +1,14 @@
 class Customer::GardenplansController < Customer::Base
   def index
+    @function = 'gardenplans.index'
     @customer = Customer.find(current_customer[:id])
     @gardenplans = @customer.gardenplans.where(:gardenplan_year => Time.now.year).order(occurred_at: :desc)
     unless params[:gardenplan_id] then
-      first_gardenplan_id = @gardenplans.first
-      first_vegetable_code = @gardenplans.first.vegetable_code
-      first_vegetable_name = @gardenplans.first.vegetable_name
+      if  @gardenplans.size != 0 then
+        first_gardenplan_id = @gardenplans.first
+        first_vegetable_code = @gardenplans.first.vegetable_code
+        first_vegetable_name = @gardenplans.first.vegetable_name
+      end
     else 
       first_gardenplan_id = params[:gardenplan_id]
       first_vegetable_code = params[:vegetable_code]
@@ -16,8 +19,15 @@ class Customer::GardenplansController < Customer::Base
     else
       searchLocale = "en"
     end
-    @vegetabletasks = Vegetabletask.all.where(:vegetable_code => first_vegetable_code).where(language_code: searchLocale).order(cultivate_task_term: :asc)
-    @gardenplanevents = Gardenplanevent.all.where(gardenplan_id: first_gardenplan_id).order(cultivate_task_term: :asc)
+    @vegetabletasks = Vegetabletask.where(:vegetable_code => first_vegetable_code).where(language_code: searchLocale).order(cultivate_task_term: :asc)
+    @vegetabletasks.each do |f|
+       if f.cultivate_task_type.present? then
+         @cultivatetask = Cultivatetask.where(:cultivate_task_code => f.cultivate_task_type)
+         f.cultivate_task_comment = @cultivatetask.first.cultivate_task_comment
+         f.cultivate_task_image = @cultivatetask.first.cultivate_task_image 
+       end
+    end
+#    @gardenplanevents = Gardenplanevent.all.where(gardenplan_id: first_gardenplan_id).order(cultivate_task_term: :asc)
     @selectvegetable = first_vegetable_name     
     render action: 'index' 
 
@@ -42,7 +52,6 @@ class Customer::GardenplansController < Customer::Base
   end
 
   def create
-p "★params[:form][:vegetable_code]:" + params[:form][:vegetable_code].inspect
     @gardenplanevent_form = Customer::GardenplaneventForm.new
     @gardenplanevent_form.assign_attributes(params[:form])
     

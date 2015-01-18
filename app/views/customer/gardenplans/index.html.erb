@@ -13,19 +13,19 @@
 	  	  title: titleText,
 	      modal: true,
 	      resizable: true,
-	      maxHeight: 500,
+	      maxHeight: 00,
 	      maxWidth : 500,
 	      minHeight: 150,
 	      minWidth : 150,
-	      height: 220,
-	      width : 400
+	      height: 266,
+	      width : 460
 	    });
   	} 
   };
 </script>
 </head>
 
-<% @title = '栽培計画' %>
+<% @title = t('gardenplans.index.vegetableGardenPlan') %>
 
 <div class="function">
 <div style='float: left' class="title" >
@@ -37,18 +37,16 @@
 <div class="table-wrapper">
   <table class="listing">
     <tr>
-      <th>季節</th>
-      <th>野菜</th>
-      <th>アクション</th>
+      <th><%= t('gardenplans.index.year') %></th>
+      <th><%= t('gardenplans.index.term') %></th>
+      <th><%= t('gardenplans.index.vegetable') %></th>
     </tr>
     <% @gardenplans.each do |m| %>
     <tr>
     <!-- <tr onclick='SelectRow(<%= m.id %>, <%= '"' + m.vegetable_code + '"' %>)'> -->
+    　　　　<td><%= m.gardenplan_year %></td>
       <td><%= m.seed_plant_set_term %></td>
       <td><%= link_to m.vegetable_name, controller: "gardenplans", action: "index", gardenplan_id: m.id, vegetable_code: m.vegetable_code , vegetable_name: m.vegetable_name %></td>
-      <td class="actions">
-      	<%= link_to '菜園計画を立てる', [ :new, :customer, m, :gardenplan_id => m.id, :vegetable_code => m.vegetable_code]  %>
-      </td>
     </tr>
     <% end %>
   </table>
@@ -65,7 +63,7 @@
   </br>
   </div>
   <div id="explantask" style="display:none;">
-  	<textarea id="explantaskComment" style="font-size:2px;" rows='10' cols='51' wrap='soft' disabled="true"></textarea>
+  	<textarea id="explantaskComment" style="font-size:14px;" rows='10' cols='51' wrap='soft' disabled="true"></textarea>
   </div>
   
 <!-- <%= debug(@gardenmaps) %>

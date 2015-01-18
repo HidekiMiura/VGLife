@@ -1,5 +1,5 @@
 class GardenmapPresenter < ModelPresenter
-  delegate :garden_year, :garden_type, :gardenmap_title, :plant_set_definition_json, :cultivate_vegetable_list, :seed_plant_set_term, to: :object
+  delegate :garden_year, :garden_type, :gardenmap_title, :plant_set_definition_json, :cultivate_vegetable_list, :seed_plant_set_term, :map_width_cell, :map_height_cell, :max_canvas_X_cell, :max_canvas_Y_cell, to: :object
   
   def garden_year_term
     object.garden_year + ' ' + object.given_name

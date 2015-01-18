@@ -28,8 +28,17 @@ var DRAG;
         Basil:        'Basil',
         TomatoBasil:  'TomatoBasil',
         Marigold:     'Marigold',
-        Cabbage:      'Cabbage'
-      }
+        Cabbage:      'Cabbage',
+        Spinach:      'Spinach',
+        GarlandChrysanthemun:       'GarlandChrysanthemun',
+        Brick:        'Brick',
+        WoodChip:     'WoodChip',
+        Straw:        'Straw',
+        BedOfBrick:   'BedOfBrick',
+        Soil:         'Soil',
+        Picket:       'Picket',
+        Rabbit:       'Rabbit'
+        }
     };
 
     
@@ -104,16 +113,6 @@ var DRAG;
         return false;
     };
 
-    GardenmapEdit.getReturnControlParamHTML = function(itemIdx) {
-        var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
-                    "<h4>条件1<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.condition1 + "></h4>" +
-                    "<h4>条件2<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.condition2 + "></h4>" +
-                    "<h4>条件3<input align='left' type='text' size='48' height='100' value=" +  DRAG.itemAr[itemIdx].param.condition3 + "></h4>" +
-                    "<h4>条件4<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.condition4 + "></h4>" +
-                    "<h4>条件5<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.condition5 + "></h4>" +
-                    "<h4>戻り条件(コメント)<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.returnConditionDetail + "></h4></div><p/>";
-        return paramDataHTML;
-    };
     GardenmapEdit.getVegetableParamHTML = function(itemIdx) {
         var paramDataHTML = "<div id ='taskParamViewDiv' class='paramwaku'>" +
                     "<h4>野菜名<input align='left' type='text' size='48' height='100' value=" + DRAG.itemAr[itemIdx].param.taskName + "></h4></div><p/>";
@@ -139,11 +138,11 @@ var DRAG;
                 var yscroll =document.getElementsByClassName("canvasScroll")[0].scrollTop;
                 if (Math.abs(cx - DRAG.itemAr[itemIdx].x * DRAG.grSep + xscroll ) >= updSep ||
                     Math.abs(cy - DRAG.itemAr[itemIdx].y + DRAG.grSep + yscroll ) >= updSep) {
-                  moveTaskIcon.style.top = DRAG.itemAr[itemIdx].y * DRAG.grSep - yscroll + DRAG.grSepqua*0.5 + 290 + "px";
-                  moveTaskIcon.style.left = DRAG.itemAr[itemIdx].x * DRAG.grSep + DRAG.grSepqua*1.5 + 255 + "px";
+                  moveTaskIcon.style.top = DRAG.itemAr[itemIdx].y * DRAG.grSep - yscroll + DRAG.grSepqua*0.5 + 362 + "px";
+                  moveTaskIcon.style.left = DRAG.itemAr[itemIdx].x * DRAG.grSep + DRAG.grSepqua*1.5 + 268 + "px";
                   moveTaskIcon.style.display = "block";
                   
-                  moveTaskIcon.style.backgroundImage = "url(/assets/" + DRAG.itemAr[itemIdx].type + "_move.png)";
+                  moveTaskIcon.style.backgroundImage = "url(/assets/vegetables/" + DRAG.itemAr[itemIdx].type + "_move.png)";
                 }
             } else{
                 GardenmapEdit.taskMove.now = false;
@@ -157,30 +156,23 @@ var DRAG;
                     if(removetable !== null){
                         removetable.remove();
                     }
+                    var language = $('#language').val();
                     // イチゴ情報のDOMを構築する
                     if(DRAG.itemAr[itemIdx].type === "Strawberry") {
-                      paramDataHTML = VegetableInfo.getStrawberryParamHTML();
-                    }
-                    // else if(DRAG.itemAr[itemIdx].type === "ReturnControl") {
-                        // paramDataHTML = GardenmapEdit.getReturnControlParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "Tomato" ||
-                              // DRAG.itemAr[itemIdx].type === "Strawberry") {
-                        // paramDataHTML = GardenmapEdit.getVegetableParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "SubFlowCall") {
-                        // paramDataHTML = GardenmapEdit.getSubFlowCallParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "FileWait") {
-                        // paramDataHTML = GardenmapEdit.getFileWaitParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "DatetimeWait") {
-                        // paramDataHTML = GardenmapEdit.getDatetimeWaitParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "BranchStart") {
-                        // paramDataHTML = GardenmapEdit.getBranchStartParamHTML(itemIdx);
-                    // } else if(DRAG.itemAr[itemIdx].type === "ParallelJoin") {
-                        // paramDataHTML = GardenmapEdit.getParallelJoinParamHTML();
-                    // } else if(DRAG.itemAr[itemIdx].type === "ParallelStart") {
-                        // paramDataHTML = GardenmapEdit.getParallelStartParamHTML();
-                    // } else if(DRAG.itemAr[itemIdx].type === "BranchJoin") {
-                        // paramDataHTML = GardenmapEdit.getBranchJoinParamHTML();
-                    // }
+                      paramDataHTML = VegetableInfo.getStrawberryParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "Cabbage") {
+                      paramDataHTML = VegetableInfo.getCabbageParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "Tomato") {
+                      paramDataHTML = VegetableInfo.getTomatoParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "Basil") {
+                      paramDataHTML = VegetableInfo.getBasilParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "Marigold") {
+                      paramDataHTML = VegetableInfo.getMarigoldParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "Spinach") {
+                      paramDataHTML = VegetableInfo.getSpinachParamHTML(language);
+                    } else if(DRAG.itemAr[itemIdx].type === "GarlandChrysanthemun") {
+                      paramDataHTML = VegetableInfo.getGarlandChrysanthemunParamHTML(language);
+                    } 
                     $("#taskParamView").append( paramDataHTML );
                     GardenmapEdit.viewTaskInfo.mouseOverType = DRAG.itemAr[itemIdx].type;
                }
@@ -215,7 +207,7 @@ var DRAG;
 
 
 
-    GardenmapEdit.canvasComponent = function (jsonFlowObj,cultivateVegetableList) {
+    GardenmapEdit.canvasComponent = function (jsonFlowObj,cultivateVegetableList,canvasHeightCell,canvasWidthCell,maxCanvasXCell,maxCanvasYCell) {
 
         var canvas = document.getElementById(GardenmapEdit.con.id.cvm);
         if ( ! canvas || ! canvas.getContext ) { return false; }
@@ -225,23 +217,23 @@ var DRAG;
         ctx.globalCompositeOperation = "source-over";
 
         canvas = document.getElementById(GardenmapEdit.con.id.cvm);
-        canvas.height = 300;
-        canvas.width = 675;
+        var cellWidth = 40;
+        canvas.height = canvasHeightCell * cellWidth;
+        canvas.width = canvasWidthCell * cellWidth;
 
-        DRAG = new GardenmapCanvasCom.canv(GardenmapEdit.con.id.cvm, ctx, 40, canvas.width, canvas.height, GardenmapEdit, jsonFlowObj,cultivateVegetableList);
+        DRAG = new GardenmapCanvasCom.canv(GardenmapEdit.con.id.cvm, ctx, cellWidth, canvas.width, canvas.height,maxCanvasXCell,maxCanvasYCell, GardenmapEdit, jsonFlowObj,cultivateVegetableList);
         var $cvdiv = $('#' + this.con.id.cvdiv);
         DRAG.cvpos.x = $cvdiv.offset().left;
         DRAG.cvpos.y = $cvdiv.offset().top;
 
         canvas = document.getElementById(GardenmapEdit.con.id.cvm);
-        canvas.height = DRAG.jsonFlowObj.workFlowDesignHeight;
-        canvas.width = DRAG.jsonFlowObj.workFlowDesignWidth;
 
         // DRAG.changeGrSep(parseInt(DRAG.jsonFlowObj.workFlowDesignGride));
         DRAG.blank(canvas.width, canvas.height);
         DRAG.readWorkFlow();
         DRAG.view();
-
+       $('#maxCanvasXCell').val(DRAG.maxcanvasXCell);
+       $('#maxCanvasYCell').val(DRAG.maxcanvasYCell);
     };
 
       this.readFlowInfo = function() {
@@ -289,6 +281,33 @@ var DRAG;
         DRAG.jsonFlowObj.taskData.splice(taskIndex, 1);
     };
     
+    setVegetableList = function() {
+      var strVegetable_list ="";
+      var iFind = 0;
+      strVegetable_list = '[';
+      for (var i = 0; i < DRAG.jsonFlowObj.taskData.length; i++) {
+      	if (DRAG.jsonFlowObj.taskData[i].taskType != 'Brick' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'WoodChip' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'Straw' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'BedOfBrick' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'Soil' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'Picket' &&
+      	    DRAG.jsonFlowObj.taskData[i].taskType != 'Rabbit' ){
+        	iFind = strVegetable_list.indexOf(DRAG.jsonFlowObj.taskData[i].taskType.toLowerCase());
+	      	if (iFind === -1){
+	          if (strVegetable_list === '['){
+	      		strVegetable_list = strVegetable_list + DRAG.jsonFlowObj.taskData[i].taskType.toLowerCase() + '=' + DRAG.jsonFlowObj.taskData[i].taskName;
+	      	  }
+	      	  else{
+	            strVegetable_list = strVegetable_list + ',' + DRAG.jsonFlowObj.taskData[i].taskType.toLowerCase() + '=' + DRAG.jsonFlowObj.taskData[i].taskName;      		
+	      	  }
+	      	}
+      	} 
+      }
+      strVegetable_list = strVegetable_list + ']';
+      $('#form_gardenmap_cultivate_vegetable_list').val(strVegetable_list);
+    };
+
     deleteNextLine = function(taskIndex,nextCoordinatex,nextCoordinatey) {
         for (j = 0; j < DRAG.jsonFlowObj.taskLayouts[taskIndex].nextTaskCoordinateDefinition.length; j++) {
             if(DRAG.jsonFlowObj.taskLayouts[taskIndex].nextTaskCoordinateDefinition[j] === nextCoordinatex + "-" + nextCoordinatey){
@@ -431,6 +450,8 @@ cancelFullScreen =function(event) {
             // this.taskLineConnect.now = false;
             moveTaskIcon.style.display = "none";
             deleteTask(GardenmapEdit.taskMove.item);
+            $('#form_gardenmap_plant_set_definition_json').val(JSON.stringify(DRAG.jsonFlowObj));
+            setVegetableList();
         }
         canvas = document.getElementById(GardenmapEdit.con.id.cvm);
         if ( ! canvas || ! canvas.getContext ) { return false; }
@@ -438,6 +459,8 @@ cancelFullScreen =function(event) {
         DRAG.blank(canvas.width, canvas.height);
         DRAG.readWorkFlow();
         DRAG.view(true);
+        $('#maxCanvasXCell').val(DRAG.maxcanvasXCell);
+        $('#maxCanvasYCell').val(DRAG.maxcanvasYCell);
     }
     return false;
 };
@@ -453,6 +476,7 @@ window.addEventListener('keydown', cancelFullScreen, true);
 window.addEventListener("click", function(event) {
   var type = event.target.id;
   var paramDataHTML = null;
+  var language = $('#language').val();
 
   if ( GardenmapEdit.viewTaskInfo.mouseOverType != type) {
       // 野菜情報を表示
@@ -460,7 +484,19 @@ window.addEventListener("click", function(event) {
       // イチゴ情報のDOMを構築する
       if(type === "Strawberry") {
         // paramDataHTML = GardenmapEdit.getStrawberryParamHTML();
-        paramDataHTML = VegetableInfo.getStrawberryParamHTML();
+        paramDataHTML = VegetableInfo.getStrawberryParamHTML(language);
+      } else if(type === "Cabbage") {
+        paramDataHTML = VegetableInfo.getCabbageParamHTML(language);
+      } else if(type === "Tomato") {
+        paramDataHTML = VegetableInfo.getTomatoParamHTML(language);
+      } else if(type === "Basil") {
+        paramDataHTML = VegetableInfo.getBasilParamHTML(language);
+      } else if(type === "Marigold") {
+        paramDataHTML = VegetableInfo.getMarigoldParamHTML(language);
+      } else if(type === "Spinach") {
+        paramDataHTML = VegetableInfo.getSpinachParamHTML(language);
+      } else if(type === "GarlandChrysanthemun") {
+        paramDataHTML = VegetableInfo.getGarlandChrysanthemunParamHTML(language);
       } else {
      	GardenmapEdit.viewTaskInfo.mouseOverType = "";
       }
@@ -505,6 +541,9 @@ window.addEventListener("drop", function(event) {
   ctx = canvas.getContext("2d");
   DRAG.blank(canvas.width, canvas.height);
   DRAG.view(true);
+  $('#maxCanvasXCell').val(DRAG.maxcanvasXCell);
+  $('#maxCanvasYCell').val(DRAG.maxcanvasYCell);
+
 }, false);
 
 /**
@@ -539,7 +578,8 @@ window.addEventListener("drop", function(event) {
   	else if(dragTaskType.indexOf("CompanionPlant") < 0){
         // 野菜を菜園図に追加
 	    newTaskId = Date.now() + rtnXCoordinate + "-" + dragTaskType + "-" + "new";
-	    addTaskData = JSON.parse('{"taskId":"' + newTaskId + '","taskType":"' + dragTaskType + '","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"}');
+	    vegetablename = DRAG.getVegetableName(dragTaskType);
+	    addTaskData = JSON.parse('{"taskId":"' + newTaskId + '","taskType":"' + dragTaskType + '","taskName":"'+ vegetablename + '","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"}');
 	    DRAG.jsonFlowObj.taskData.push(addTaskData);
 	    addTaskLayouts = JSON.parse('{"taskId":"' + newTaskId + '","coordinate":"' + rtnXCoordinate + "-" + rtnYCoordinate + '","coordinate2":"","nextTaskCoordinateDefinition":[]}');
 	    DRAG.jsonFlowObj.taskLayouts.push(addTaskLayouts);
@@ -553,7 +593,7 @@ window.addEventListener("drop", function(event) {
 	 } else {
 	 	// コンパニオン菜園図の追加
 	 	// トマトとバジル
-	 	var jsonFlowText　= '{"workFlowDesignGride":"80","workFlowDesignHeight":"500","workFlowDesignWidth":"500","taskData":[{"taskId":"1418128597920-Tomato-new","taskType":"Tomato","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128604784-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128606861-Tomato-new","taskType":"Tomato","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128609051-Tomato-new","taskType":"Tomato","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128611103-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128616173-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128618242-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128621979-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128625551-Basil-new","taskType":"Basil","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128628095-moveTaskIcon-new","taskType":"moveTaskIcon","taskName":"タスク名称１","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"}],"taskLayouts":[{"taskId":"1418128597920-Tomato-new","coordinate":"4-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128604784-Basil-new","coordinate":"4-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128606861-Tomato-new","coordinate":"1-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128609051-Tomato-new","coordinate":"7-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128611103-Basil-new","coordinate":"4-4","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128616173-Basil-new","coordinate":"2-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128618242-Basil-new","coordinate":"2-4","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128621979-Basil-new","coordinate":"7-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128625551-Basil-new","coordinate":"7-4","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128628095-moveTaskIcon-new","coordinate":"2-0","coordinate2":"","nextTaskCoordinateDefinition":[]}],"taskState":[{"taskId":"1418128597920-Tomato-new"},{"taskId":"1418128604784-Basil-new"},{"taskId":"1418128606861-Tomato-new"},{"taskId":"1418128609051-Tomato-new"},{"taskId":"1418128611103-Basil-new"},{"taskId":"1418128616173-Basil-new"},{"taskId":"1418128618242-Basil-new"},{"taskId":"1418128621979-Basil-new"},{"taskId":"1418128625551-Basil-new"},{"taskId":"1418128628095-moveTaskIcon-new"}]}';
+	 	var jsonFlowText　= '{"taskData":[{"taskId":"1418128597920-Tomato-new","taskType":"Tomato","taskName":"トマト","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128604784-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128606861-Tomato-new","taskType":"Tomato","taskName":"トマト","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128609051-Tomato-new","taskType":"Tomato","taskName":"トマト","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128611103-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128616173-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128618242-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128621979-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"},{"taskId":"1418128625551-Basil-new","taskType":"Basil","taskName":"バジル","divId":"oyaId1","isTrayTask":false,"trayTaskGroupId":"ttgId1"}],"taskLayouts":[{"taskId":"1418128597920-Tomato-new","coordinate":"4-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128604784-Basil-new","coordinate":"4-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128606861-Tomato-new","coordinate":"1-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128609051-Tomato-new","coordinate":"7-2","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128611103-Basil-new","coordinate":"4-4","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128616173-Basil-new","coordinate":"1-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128618242-Basil-new","coordinate":"1-4","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128621979-Basil-new","coordinate":"7-0","coordinate2":"","nextTaskCoordinateDefinition":[]},{"taskId":"1418128625551-Basil-new","coordinate":"7-4","coordinate2":"","nextTaskCoordinateDefinition":[]}],"taskState":[{"taskId":"1418128597920-Tomato-new"},{"taskId":"1418128604784-Basil-new"},{"taskId":"1418128606861-Tomato-new"},{"taskId":"1418128609051-Tomato-new"},{"taskId":"1418128611103-Basil-new"},{"taskId":"1418128616173-Basil-new"},{"taskId":"1418128618242-Basil-new"},{"taskId":"1418128621979-Basil-new"},{"taskId":"1418128625551-Basil-new"}]}';
 	 	var jsonObj = JSON.parse(jsonFlowText); 
 	 	DRAG.jsonFlowObj = jsonObj 
 
@@ -575,19 +615,24 @@ window.addEventListener("drop", function(event) {
      DRAG.blank(canvas.width, canvas.height);
      DRAG.readWorkFlow();
      DRAG.view(true);
+     $('#maxCanvasXCell').val(DRAG.maxcanvasXCell);
+     $('#maxCanvasYCell').val(DRAG.maxcanvasYCell);
+
      GardenmapEdit.taskAdd.now = false;
-     var strVegetable_list ="";
-     for (var key in DRAG.cultivateVegetableList) {
-  	   if(strVegetable_list === ""){
-	     strVegetable_list = '[' + key + '=' + DRAG.cultivateVegetableList[key];
-	   }
-  	   else{
-	     strVegetable_list = strVegetable_list + ',' + key + '=' + DRAG.cultivateVegetableList[key];	
-	   }
-     }
-     strVegetable_list = strVegetable_list + "]";
+     // var strVegetable_list ="";
+     // for (var key in DRAG.cultivateVegetableList) {
+  	   // if(strVegetable_list === ""){
+	     // strVegetable_list = '[' + key + '=' + DRAG.cultivateVegetableList[key];
+	   // }
+  	   // else{
+	     // strVegetable_list = strVegetable_list + ',' + key + '=' + DRAG.cultivateVegetableList[key];	
+	   // }
+     // }
+     // strVegetable_list = strVegetable_list + "]";
      $('#form_gardenmap_plant_set_definition_json').val(JSON.stringify(DRAG.jsonFlowObj));
-     $('#form_gardenmap_cultivate_vegetable_list').val(strVegetable_list);
+     // $('#form_gardenmap_cultivate_vegetable_list').val(strVegetable_list);
+     setVegetableList();
+
      // DRAG.ajaxPlantSetDefinition(JSON.stringify(DRAG.jsonFlowObj));
         
   }

@@ -30,15 +30,15 @@ var DRAG;
         TomatoBasil:  'TomatoBasil',
         Marigold:     'Marigold',
         Cabbage:      'Cabbage',
-        SubFlowCall:  'SubFlowCall',
-        ReturnControl:'ReturnControl',
-        DatetimeWait: 'DatetimeWait',
-        FileWait:     'FileWait',
-        ParallelStart: 'ParallelStart',
-        ParallelJoin:  'ParallelJoin',
-        BranchJoin:    'BranchJoin',
-        FlowStart:     'FlowStart',
-        FlowEnd:       'FlowEnd'
+        Spinach:      'Spinach',
+        GarlandChrysanthemun:       'GarlandChrysanthemun',
+        Brick:        'Brick',
+        WoodChip:     'WoodChip',
+        Straw:        'Straw',
+        BedOfBrick:   'BedOfBrick',
+        Soil:         'Soil',
+        Picket:       'Picket',
+        Rabbit:       'Rabbit'
       }
     };
 
@@ -86,25 +86,19 @@ var DRAG;
         ctx.globalCompositeOperation = "source-over";
 
         canvas = document.getElementById(canvasId);
-        canvas.height = 150;
-        canvas.width = 340;
+        canvas.height = 140;
+        canvas.width = 280;
 
-        DRAG = new GardenmapCanvasCom.canv(canvasId, ctx, 20,canvas.width, canvas.height, GardenmapList, jsonFlowObj);
+        DRAG = new GardenmapCanvasCom.canv(canvasId, ctx, 20,canvas.width, canvas.height, 0, 0, GardenmapList, jsonFlowObj);
 
         // imageファイルの取り込み時間の調整
-function sleep(time, callback){
-		setTimeout(callback, time);
-	}
-	
-	sleep(500, function (){ 
         canvas = document.getElementById(canvasId);
 
         // DRAG.changeGrSep(parseInt(DRAG.jsonFlowObj.workFlowDesignGride));
         DRAG.blank(canvas.width, canvas.height);
         DRAG.readWorkFlow();
-        DRAG.view();
+        DRAG.viewL();
 
-		} );
 	
         // canvas = document.getElementById(canvasId);
 // 

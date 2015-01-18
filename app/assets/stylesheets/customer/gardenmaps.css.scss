@@ -35,8 +35,8 @@ div#taskInfoPop:before {
 div#moveTaskIcon {
     display: none;
     position: absolute;
-    width: 11px;
-    height: 11px;
+    width: 20px;
+    height: 20px;
     background-color: #ffffff;
 /*    background-image: url("UI.png");*/
     color: #000000;
@@ -139,16 +139,25 @@ h5 {
     text-shadow: 0 0 1px;
     padding:10px;
  }
+h_star {
+    background:$sea_turtle_green;
+    color:$yellow;
+    font-size:11pt;
+ }
 
 #tabDrags {
-  width:700px;
-  height:28px;
+  width:680px;
+  height:80px;
+  overflow-x:scroll;
+  background-color: #FFE5B4;
+  border: 1px solid #438d80;
+ 
   // border:2px solid $sea_turtle_green;
 }
 div.canvasScroll {
 	  border:3px solid #AC6700;
     background-color:$light_brown;
-    width: 675px;
+    width: 648px;
     height: 300px;
     overflow-x: auto;
     overflow-y: auto;

@@ -12,7 +12,7 @@ class FormPresenter
   def notes
     markup(:div, class: 'notes') do |m|
       m.span '*', class: 'mark'
-      m.text '印のついた項目は入力必須です。'
+      m.text I18n.t('com.requiredMessage')
     end
   end
   

@@ -3,12 +3,12 @@ class Customer::GardenmapSearchForm
   
   attr_accessor :customer_id, :garden_year, :garden_type, :gardenmap_title, :plant_set_definition_json, :cultivate_vegetable_list, :seed_plant_set_term
   
-  def search(customer_id,search_year)
+  def search(customer_id,search_year = nil)
     rel = Gardenmap.all
     rel = rel.where(customer_id: customer_id)
     rel = rel.where(garden_year: search_year)
-    
-#    p "★re2：" + rel.inspect
+
+    #    p "★re2：" + rel.inspect
     #   
 #    if garden_year.blank?
 #      p "★blank："

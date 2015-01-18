@@ -1,26 +1,55 @@
 en:
+  com:
+    requiredMessage: marked item is required item.
+    zoom100: '　表示倍率100%で操作して下さい。'
+  functionMenu:
+    title: vegetable garden site menu
+    vegetableGardenMap: vegetable garden map
+    vegetableGardenPlan: vegetable garden plan
+    recipe: recipe
   top:
     index:
-      vegetableCite: vegetable cite
+      vegetableCite:  description of　vegetable cite
+      whatsNew: 新着情報
       allowanceManagement: allowance management
       businessManagement: business management
       buildingCite: building a cite
       memberDevelopmentTeamRails4: member of the development team by Rails4
       descriptionFunctions: "description_of_functions"
       estimationRequest: estimation request
+      developmentResults: 開発実績
       offer: offer
+      mainTitle: vegetable garden life
+      logout: logout
+      registrationInfo: registration information
   gardenmaps:
     index:
+      topPage: top page
       searchButtonLabel: search
       year: year
+      term: picking season
+      gardenTitle: vegetable garden title
+      vegetableGarden: vegetable garden map
+      action: action
+      edit: edit
+      delete: del
+      new: create new map
+      title: vegetable garden map
     edit:
       title: edit the vegetable garden map
+      edit: edit
+      term: picking season
+      year: year
+      gardenTitle: vegetable garden title
+      gardenTitlePlaceholder: please enter the vegetable garden map title.
+      mapWidth: 横マス 
+      mapHeight: 縦マス 
   views:
     pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
-      previous: "&lsaquo; 前のページ"
-      next: "次のページ &rsaquo;"
+      first: "&laquo; first"
+      last: "last &raquo;"
+      previous: "&lsaquo; prev page"
+      next: "next page &rsaquo;"
       truncate: "..."
   activemodel:
     attributes:

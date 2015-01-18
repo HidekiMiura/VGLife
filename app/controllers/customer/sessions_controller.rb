@@ -5,11 +5,34 @@ class Customer::SessionsController < Customer::Base
       redirect_to :customer_root
     else
       @form = Customer::LoginForm.new
+      sql = "SELECT * FROM whatsnews WHERE reflect_start_date <= '" + Time.now.strftime("%Y-%m-%d") + "'"
+      @whatsnews = Whatsnew.find_by_sql(sql)
       render action: 'new'
     end
   end
+  def accountnew
+    @customer_form = Customer::CustomerForm.new
+    render action: 'account_new'
+  end
   
+  def accountcreate
+    @customer_form = Customer::CustomerForm.new
+    @customer_form.assign_attributes(params[:form])
+    if @customer_form.save
+      session[:customer_id] = @customer_form.customer.id
+      session[:last_access_time] = Time.current
+      flash.notice = '顧客を追加しました。'
+      redirect_to :customer_root
+    else
+      flash.now.alert = '入力に誤りがあります。'
+      render action: 'account_new'
+    end
+  end
   def create
+#    if params[:commit] == "entry" || params[:commit] == "登録" then
+#      @customer_form = Staff::CustomerForm.new
+#      render action: 'account_new'
+#    else
     @form = Customer::LoginForm.new(params[:customer_login_form])
       if @form.email.present?
         customer = Customer.find_by(email_for_index: @form.email.downcase)

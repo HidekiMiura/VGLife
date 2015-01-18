@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script>
+  checkPossibleChangeMap = function(canvasWidthCell,canvasHeightCell,maxCanvasXCell,maxCanvasYCell) {
+  	if (parseInt(maxCanvasXCell) > parseInt(canvasWidthCell)) {
+  		return false;
+  	} else if (parseInt(maxCanvasYCell) > parseInt(canvasHeightCell)) {
+  		return false;
+  	} 
+  	return true;
+  };
+
+  changeMapSize = function() {
+       var jsonFlowText = $('#form_gardenmap_plant_set_definition_json').val();
+       var jsonObj = JSON.parse(jsonFlowText);
+       var cultivateVegetableListText = $('#form_gardenmap_cultivate_vegetable_list').val();
+       
+	   var cultivateVegetableList = new Array();
+	   var qStr = cultivateVegetableListText.substr(1,cultivateVegetableListText.length - 2).split(",");
+	   for (var i=0; i<qStr.length; i++) {
+	     var qData = qStr[i].split("=");
+	     cultivateVegetableList[ qData[0] ] = qData[1];
+	   }
+       var canvasHeightCell = $('#mapHeightCell').val();
+       var canvasWidthCell = $('#mapWidthCell').val();
+       var maxCanvasXCell = $('#maxCanvasXCell').val();
+       var maxCanvasYCell = $('#maxCanvasYCell').val();
+
+       if (!checkPossibleChangeMap(canvasWidthCell,canvasHeightCell,maxCanvasXCell,maxCanvasYCell)) {
+	  	 $("#messageDialog").dialog({
+	  	   title: "エラーメッセージ",
+	       modal: true,
+	       resizable: true,
+	       height: 120,
+	       width : 540
+	     });
+       	 return;
+       }
+
+       GardenmapEdit.canvasComponent(jsonObj,cultivateVegetableList,canvasHeightCell,canvasWidthCell,maxCanvasXCell,maxCanvasYCell);
+};
+
 (function($) {
 	$(window).load(function() {
-       var jsonFlowText = '{"workFlowDesignGride":"80","workFlowDesignHeight":"500","workFlowDesignWidth":"500","taskData":[],"taskLayouts":[],"taskState":[]}';
+       var jsonFlowText = '{"taskData":[],"taskLayouts":[],"taskState":[]}';
+       $('#form_gardenmap_plant_set_definition_json').val(jsonFlowText);
        var jsonObj = JSON.parse(jsonFlowText);
        var cultivateVegetableList = new Array();
-       GardenmapEdit.canvasComponent(jsonObj,cultivateVegetableList);
+
+       var canvasHeightCell = 7;
+       var canvasWidthCell = 16;
+       var maxCanvasXCell = 0;
+       var maxCanvasYCell = 0;
+       $('#maxCanvasXCell').val(maxCanvasXCell);
+       $('#maxCanvasYCell').val(maxCanvasYCell);
+       $('#mapHeightCell').val(canvasHeightCell);
+       $('#mapWidthCell').val(canvasWidthCell);
+
+       GardenmapEdit.canvasComponent(jsonObj,cultivateVegetableList,canvasHeightCell,canvasWidthCell,maxCanvasXCell,maxCanvasYCell);
  
        var $cvdiv = $('#' + GardenmapEdit.con.id.cvdiv);
        $cvdiv.mousedown(GardenmapEdit.cvmsDown);
@@ -21,20 +72,29 @@
 <div class="function">
 <% @title = '菜園図作成' %>
 <h1><%= @title %></h1>
-
 <div id="generic-form">
   <%= form_for @gardenmap_form, as: 'form', url: :customer_gardenmaps do |f| %>
     <%= render 'form', f: f %>
     <%= render 'new_vegetable_select' %>
     <br/>
+<fieldset id="home-address-fields">
+	<legend>菜園図</legend>
+    <input type='button' value='サイズ変更' onClick="changeMapSize()" style='padding: $wide $very_wide;background-color: #FFFF99;border-radius: 20px;box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);'>&nbsp;&nbsp;
+	<%= render 'map', f: f %>
     <div id="cvdiv" class="canvasScroll"><canvas id="cv1"></canvas></div>
-    <div id="taskParamView" class='taskparam' style="width:800px;height:350px;"><h3>野菜情報</h3><br></div>
-
     <div id="moveTaskIcon" draggable="true"></div>
+</fieldset>
+
+    <div id="taskParamView"></div>
     <div class="buttons">
       <%= f.submit '作成'%><br />
     </div>
   <% end %>
 <!-- <%= debug(@gardenmap_form) %> -->
 </div>
+<div id="messageDialog" style="display:none;">
+<a style='color:red;'>図の縮小範囲内にアイテムが配置されている為、削除できません。
+	アイテムを削除してから再度実行して下さい。</a>
+</div>
+
 

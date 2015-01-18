@@ -13,16 +13,16 @@ class Customer::Base < ApplicationController
   private
   def detect_locale
     if params[:locale].nil?
-p "★detect_locale:params[:locale].nil"
-      I18n.locale = request.headers['Accept-Language'].scan(/^[a-z]{2}/).first
+      if I18n.locale.nil?
+        I18n.locale = request.headers['Accept-Language'].scan(/^[a-z]{2}/).first
+      else
+      end
     else
-p "★detect_locale:else"
       I18n.locale = params[:locale]
     end
   end
   def customer_locale
       I18n.locale
-p "★I18n.locale:" + I18n.locale.inspect
   end
 
   def current_customer
